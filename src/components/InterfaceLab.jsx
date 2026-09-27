@@ -8,7 +8,7 @@ const destinations = [
 
 function SaveButton({ en, saved, onSave, className = '' }) {
   return <button className={`demo-button ${className}`} onClick={onSave} aria-pressed={saved}>
-    {saved ? (en ? 'Added to your ideas' : 'Aggiunto alle tue idee') : (en ? 'Save this inspiration' : 'Salva questa ispirazione')}
+    {saved ? (en ? 'Selected' : 'Selezionata') : (en ? 'Select this style' : 'Scegli questo stile')}
     <span aria-hidden="true">{saved ? '✓' : '↗'}</span>
   </button>;
 }
@@ -99,6 +99,7 @@ export default function InterfaceLab({ lang }) {
       <button className="device-toggle" onClick={() => setCompact(!compact)} aria-pressed={compact} aria-label={en ? 'Compact preview' : 'Anteprima compatta'}><svg width="16" height="20" viewBox="0 0 16 20" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><rect x="3" y="1" width="10" height="18" rx="2" /><path d="M6 16h4" /></svg></button>
     </div>
     <p className="lab-hint">{hints[style]}</p>
-    <span className="sr-only" role="status">{saved ? (en ? 'Inspiration saved for this visit.' : 'Ispirazione salvata per questa visita.') : ''}</span>
+    <p className="lab-selection-note">{en ? 'Style selections last until you leave or reload this page.' : 'La scelta resta finché non lasci o ricarichi questa pagina.'}</p>
+    <span className="sr-only" role="status">{saved ? (en ? 'Style selected for this page visit.' : 'Stile selezionato per questa visita alla pagina.') : ''}</span>
   </div>;
 }

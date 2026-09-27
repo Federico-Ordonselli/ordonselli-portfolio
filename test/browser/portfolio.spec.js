@@ -26,9 +26,9 @@ test('homepage renders, interactive demo works and layout stays within the viewp
   await expect(page.getByRole('button', { name: /Details/ })).toHaveAttribute('aria-expanded', 'true');
   await page.getByRole('button', { name: 'Compact preview' }).click();
   await expect(page.locator('.lab-canvas')).toHaveClass(/lab-compact/);
-  await page.getByRole('button', { name: /Save this inspiration/ }).click();
-  await expect(page.getByRole('status')).toContainText('Inspiration saved');
-  await page.getByRole('button', { name: /Added to your ideas/ }).click();
+  await page.getByRole('button', { name: /Select this style/ }).click();
+  await expect(page.getByRole('status')).toContainText('Style selected');
+  await page.getByRole('button', { name: /^Selected/ }).click();
   await expect(page.getByRole('status')).toBeEmpty();
   await page.getByRole('button', { name: 'Compact preview' }).click();
   for (const name of ['Explore', 'Mix', 'Minimal']) {
@@ -75,10 +75,10 @@ test('language persists between routes and after reload', async ({ page }, testI
   await page.getByRole('button', { name: 'Italiano', exact: true }).click();
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Il tuo prossimo');
   await page.getByRole('navigation').getByRole('link', { name: 'Chi sono', exact: true }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Chi sono');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('Chi sono');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('lang', 'it');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Chi sono');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('Chi sono');
   await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Il tuo prossimo');
   if (testInfo.project.name === 'mobile') await page.getByRole('button', { name: 'Apri menu' }).click();
@@ -104,7 +104,7 @@ test('project anchors, technology routes, old hash URLs and missing pages work',
   }
   await page.goto('/#/certifications');
   await expect(page).toHaveURL(/\/certifications$/);
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Certifications');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('Certifications');
   const missing = await page.goto('/competenze/missing');
   expect(missing.status()).toBe(404);
   await expect(page.getByRole('link', { name: /Back to the homepage/ })).toBeVisible();
@@ -227,4 +227,33 @@ test('toolkit scrolls, emphasises the centre and supports pause and reduced moti
   expect(await track.evaluate(el => el.style.transform)).toBe('');
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await expect(page.getByRole('img', { name: 'Git', exact: true })).toBeVisible();
+});
+
+test('certificate dialog contains keyboard focus and restores its trigger', async ({ page }) => {
+  await page.goto('/certifications');
+  const trigger = page.locator('.cert-card').first();
+  await trigger.focus();
+  await page.keyboard.press('Enter');
+  const dialog = page.getByRole('dialog');
+  await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole('button', { name: 'Close', exact: true })).toBeFocused();
+  await page.keyboard.press('Shift+Tab');
+  expect(await page.evaluate(() => Boolean(document.activeElement.closest('dialog')))).toBe(true);
+  await page.keyboard.press('Escape');
+  await expect(dialog).toHaveCount(0);
+  await expect(trigger).toBeFocused();
+});
+
+test('Italian metadata follows language selection and survives reload', async ({ page }, testInfo) => {
+  await page.goto('/');
+  if (testInfo.project.name === 'mobile') await page.getByRole('button', { name: 'Open menu' }).click();
+  await page.getByRole('button', { name: 'Italiano', exact: true }).click();
+  await expect(page).toHaveTitle('Federico Ordonselli — Sviluppatore web');
+  await page.goto('/about');
+  await expect(page).toHaveTitle('Chi sono · Federico Ordonselli');
+  await page.reload();
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /Conosci Federico/);
+  await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute('content', 'it_IT');
+  await page.goto('/competenze/frontend');
+  await expect(page).toHaveTitle('Interfacce che si fanno usare. · Federico Ordonselli');
 });

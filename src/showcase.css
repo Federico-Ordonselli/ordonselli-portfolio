@@ -203,3 +203,34 @@ body { margin: 0; }
 }
 @media (max-width: 720px) { .hero h1 { width: 100%; max-width: 460px; }.heading-star { right: 0; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; }.demo-window { transform: none; }.demo-window:hover { transform: none; } }
+
+/* Keep secondary information readable without changing the editorial hierarchy. */
+.site-navigation > a { font-size: 14px; }
+.mono, .project-category, .project-art-note, .hero-footnote, .lab-live, .lab-hint { font-size: 12px; }
+.hero-description { font-size: 16px; }
+.hero-cv { margin-top: 18px; min-height: 44px; font-size: 14px; }
+.hero-footnote { margin-top: 12px; }
+.hero-actions .text-link, .cta { font-size: 14px; }
+.project-info p { font-size: 15px; }
+.project-stack span, .expertise-tags span { font-size: 12px; }
+.project-destination { display: inline-flex; align-items: center; gap: 12px; margin-top: 18px; min-height: 44px; font-size: 14px; color: var(--blue); }
+.toolkit-section { margin-bottom: 64px; }
+.style-choices button { font-size: 12px; min-height: 44px; }
+.lab-selection-note { color: #555e4f; font-size: 12px; line-height: 1.5; margin: 6px 0 0; text-align: center; }
+.expertise-row p { font-size: 14px; }
+@media (max-width: 1000px) and (min-width: 721px) {
+  .site-navigation { gap: 12px; }
+  .site-navigation > a { font-size: 12px; }
+}
+@media (max-width: 720px) {
+  .hero-eyebrow, .section-topline { font-size: 11px; letter-spacing: .6px; }
+  .hero-grid { gap: 28px; padding-bottom: 18px; }
+  .hero-actions { gap: 12px 20px; }
+  .hero-actions .text-link { font-size: 13px; }
+  .hero-footnote { font-size: 12px; }
+  .work-section { padding-top: 32px; }
+  .toolkit-section { margin-bottom: 40px; }
+  .style-choices button { font-size: 12px; }
+  .lab-hint { font-size: 12px; }
+  .project-art-note { max-width: none; }
+}

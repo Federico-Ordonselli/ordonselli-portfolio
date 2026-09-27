@@ -1,3 +1,4 @@
 import LegacyPage from '../../components/LegacyPage';
-export const metadata = { title: 'Projects', alternates: { canonical: '/projects' } };
+import { getPageMetadata } from '../../data/pageMetadata';
+export async function generateMetadata() { return getPageMetadata('projects'); }
 export default function Page() { return <LegacyPage page="projects" />; }

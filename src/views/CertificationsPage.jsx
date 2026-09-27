@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { getContent } from '../data/content.js';
 import SectionHeader from '../components/SectionHeader.jsx';
 import SubSection from '../components/SubSection.jsx';
@@ -13,20 +13,34 @@ function CertCard({ cert, onOpen, t }) {
 }
 
 function PdfModal({ cert, onClose, t }) {
+  const dialogRef = useRef(null);
   useEffect(() => {
-    const onKey = event => { if (event.key === 'Escape') onClose(); };
-    document.addEventListener('keydown', onKey);
+    const dialog = dialogRef.current;
+    const trigger = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    dialog.showModal();
+    dialog.querySelector('button').focus();
     document.body.style.overflow = 'hidden';
-    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
-  }, [onClose]);
-  return <div className="pdf-backdrop" onMouseDown={onClose} role="presentation"><div className="pdf-dialog" role="dialog" aria-modal="true" aria-label={cert.name} onMouseDown={event => event.stopPropagation()}>
+    return () => {
+      dialog.close();
+      if (trigger?.isConnected) trigger.focus();
+      document.body.style.overflow = previousOverflow;
+    };
+  }, []);
+  return <dialog ref={dialogRef} className="pdf-dialog" aria-label={cert.name}
+    onCancel={event => { event.preventDefault(); onClose(); }}
+    onClick={event => {
+      if (event.target !== event.currentTarget) return;
+      const rect = event.currentTarget.getBoundingClientRect();
+      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) onClose();
+    }}>
     <div className="pdf-toolbar"><div className="pdf-heading"><strong>{cert.name}</strong><span>{cert.issuer}{cert.date ? ` · ${cert.date}` : ''}</span></div>
       {cert.credentialUrl && <a href={cert.credentialUrl} target="_blank" rel="noreferrer">{t.verify} ↗</a>}
       <a href={cert.file} target="_blank" rel="noreferrer">{t.open} ↗</a>
       <button type="button" onClick={onClose} aria-label={t.close}>✕</button>
     </div>
     <iframe title={cert.name} src={`${cert.file}#view=FitH`} />
-  </div></div>;
+  </dialog>;
 }
 
 export default function CertificationsPage({ lang }) {

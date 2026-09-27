@@ -135,3 +135,29 @@
 @media (prefers-reduced-motion: reduce) {
   .interface-lab .demo-window, .interface-lab .demo-window:hover { transform: none; }
 }
+
+/* Interactive controls need readable type even inside the miniature preview. */
+.interface-lab .demo-button { font-size: 11px; min-height: 44px; gap: 8px; }
+.explore-bottom .demo-button { font-size: 10px; padding-inline: 8px; }
+.explore-bottom > span, .mix-location, .mix-details { font-size: 10px; }
+.mix-options button { font-size: 11px; padding-inline: 5px; }
+.preview-explore { grid-template-rows: 36px 1fr 64px; }
+.preview-mix { grid-template-rows: 25px 1fr 44px 34px 44px; }
+.minimal-main p { font-size: 12px; }
+@media (max-width: 720px) {
+  .interface-lab .lab-canvas { height: 354px; padding: 14px; }
+  .interface-lab .demo-template { height: 298px; }
+  .interface-lab .demo-window { transform: none; }
+  .lab-note { display: none; }
+  .mix-feature { padding-block: 6px; }
+  .mix-feature h3 { font-size: 23px; margin-block: 5px; }
+  .lab-compact .mix-feature h3 { font-size: 20px; }
+  .minimal-main { padding-block: 8px; }
+  .minimal-main h3 { margin-top: 12px; }
+  .explore-bottom { flex-wrap: wrap; justify-content: center; gap: 3px; padding: 4px; }
+  .preview-explore { grid-template-rows: 36px 1fr 80px; }
+  .explore-bottom > span { font-size: 10px; }
+  .explore-copy { padding-top: 16px; }
+  .explore-copy h3 { font-size: 30px; margin-top: 6px; }
+  .explore-switcher { bottom: 8px; }
+}

@@ -35,11 +35,12 @@ export default function HomePage() {
           <h1 id="hero-title">{en ? 'Your next' : 'Il tuo prossimo'}<br />{en ? 'project,' : 'progetto,'}<br /><em>{en ? 'done right.' : 'fatto bene.'}</em><span className="heading-star" aria-hidden="true">✳</span></h1>
           <p className="hero-description">{en ? 'I’m Federico. I turn ideas into websites and web apps that look good, feel natural and do something useful.' : 'Sono Federico. Trasformo idee in siti e applicazioni web belli da vedere, semplici da usare e utili davvero.'}</p>
           <div className="hero-actions"><a href="#selected-work" className="cta cta-dark">{en ? 'Explore my work' : 'Guarda i progetti'} <span aria-hidden="true">↘</span></a><a href={`mailto:${data.email}`} className="text-link">{en ? 'Tell me your idea' : 'Raccontami la tua idea'} <span aria-hidden="true">↗</span></a></div>
+          <a className="hero-cv text-link" href={data.cv} target="_blank" rel="noreferrer">{data.ui.downloadCv} <span aria-hidden="true">↓</span></a>
           <div className="hero-footnote"><span className="small-cross" aria-hidden="true">＋</span>{en ? 'Design with character. Code with care.' : 'Design con carattere. Codice con criterio.'}</div>
         </div>
         <InterfaceLab lang={lang} />
       </div>
-      <ToolkitMarquee lang={lang} />
+
     </section>
 
     <section className="work-section wrap" id="selected-work" aria-labelledby="work-title">
@@ -47,10 +48,12 @@ export default function HomePage() {
       <div className="section-heading" data-reveal="0"><h2 id="work-title">{en ? 'Less talk.' : 'Meno promesse.'}<br /><em>{en ? 'More working things.' : 'Più cose che funzionano.'}</em></h2><Link href="/projects" className="text-link">{en ? 'All projects' : 'Tutti i progetti'} <span aria-hidden="true">↗</span></Link></div>
       <div className="featured-grid">{selected.map((project, index) => <Link href={project.href ?? `/projects#${project.slug}`} className="featured-project" key={project.kind} data-reveal={index * 80}>
         <ProjectArt kind={project.kind} />
-        <div className="project-info"><span className="mono project-category">{project.category}</span><h3>{project.title}<span aria-hidden="true">↗</span></h3><p>{project.desc}</p><div className="project-stack">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
+        <div className="project-info"><span className="mono project-category">{project.category}</span><h3>{project.title}<span aria-hidden="true">↗</span></h3><p>{project.desc}</p><div className="project-stack">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><span className="project-destination">{project.href ? (en ? 'Read case study' : 'Leggi il caso studio') : (en ? 'View project details' : 'Vedi i dettagli del progetto')} <span aria-hidden="true">→</span></span></div>
       </Link>)}</div>
       <p className="project-art-note mono">{en ? 'Illustrated project previews. Details and available links in the project cards.' : 'Anteprime grafiche illustrative. Dettagli e link disponibili nelle schede progetto.'}</p>
     </section>
+
+    <div className="toolkit-section wrap"><ToolkitMarquee lang={lang} /></div>
 
     <section className="expertise-section" aria-labelledby="expertise-title"><div className="wrap">
       <div className="section-topline mono"><span>02 / {en ? 'WHAT I CAN BUILD' : 'COSA POSSO COSTRUIRE'}</span><span aria-hidden="true">✳</span></div>

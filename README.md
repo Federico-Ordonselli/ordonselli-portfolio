@@ -47,7 +47,10 @@ La demo ha tre composizioni: **Minimal** (studio monocromatico), **Explore**
 (viaggi con fotografie e selettore di destinazione), **Mix** (layout editoriale,
 selettore weekend/spedizione e dettagli espandibili). La larghezza può essere
 ridotta con il controllo dell’anteprima compatta; il pulsante per
-salvare l’ispirazione mantiene lo stato soltanto durante la visita alla pagina.
+scegliere lo stile mantiene lo stato soltanto durante la visita alla pagina.
+La selezione dello stile è esplicitamente temporanea: si azzera lasciando o ricaricando la pagina.
+Il toolkit segue i progetti selezionati e il CV è disponibile anche nell’introduzione.
+Titoli, descrizioni e locale social seguono la lingua selezionata.
 Il contatto apre il programma email dell’utente tramite `mailto:`.
 
 Explore riprende colori e fotografie del riferimento locale Vagabondando
