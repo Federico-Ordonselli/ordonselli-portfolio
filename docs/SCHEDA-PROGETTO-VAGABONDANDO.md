@@ -1,34 +1,68 @@
-# Trekking Marti
+# Vagabondando
 
-Sito di prenotazione e pagamento per un'organizzatrice di trekking e viaggi
-avventura guidati. Bilingue, con catalogo gestito dalla cliente, checkout
-Stripe a due fasi e area riservata.
+Sito bilingue (it/en) di diari di viaggio per un'accompagnatrice di trekking,
+online su <https://vagabondando.site>. La cliente scrive i racconti in Sanity
+Studio; chi legge può contattarla via Instagram o con un form nome + email.
 
-Il caso interessante di questo progetto non è la costruzione del sito: è che
-il denaro vero passa dentro un sistema distribuito che nessuno controlla per
-intero — il browser del cliente, Stripe, un database, un servizio email, un
-cron — e che quasi tutte le decisioni difficili nascono da lì.
+Fonte completa: documento di progetto «Vagabondando» (ottobre 2026), stato del
+repository a `main` 836313a, 1° ottobre 2026.
+
+## In breve (versione attuale)
+
+| | |
+|---|---|
+| **Cosa** | Diari di viaggio, riquadro contatti, privacy, Studio su `/studio` |
+| **Per chi** | Una cliente non tecnica, che gestisce i contenuti da sola |
+| **Lingue** | Italiano (principale) e inglese, con next-intl |
+| **Stack** | Next.js 16 · React 19 · TypeScript strict · Tailwind 4 |
+| **Contenuti** | Sanity, pagine statiche rigenerate ogni 60 s (ISR) |
+| **Form** | Server Action · Vercel BotID · honeypot · rate limit Upstash Redis |
+| **Email** | Resend + React Email, mittente `mail.vagabondando.site` (DKIM/SPF) |
+| **SEO** | canonical, hreflang, Open Graph, sitemap localizzata |
+| **Test** | Vitest, 102 test (28 sul form) · CI GitHub Actions |
+| **Stato** | In produzione come demo non indicizzata (noindex), in attesa che la cliente lo adotti |
+
+94 commit, 13 pull request, 0 € di costi mensili (piani gratuiti).
+
+## Storia: da e-commerce a vetrina
+
+Il progetto è nato come sito di prenotazioni con pagamenti online. Il 30
+settembre 2026 la cliente ha scelto di non incassare online: la versione con
+pagamenti è stata salvata nel tag git `v1-stripe` e il sito è diventato una
+vetrina di diari, con aspetto e contenuti importati dal suo sito WordPress
+(8 diari, script di migrazione idempotente e testato). Il cambio è costato un
+giorno perché la logica di dominio era separata dall'infrastruttura.
+
+## Punti di onestà per CV e portfolio
+
+- Sviluppato con Claude Code come pair programmer; Federico alla guida di
+  prodotto, architettura, revisione e infrastruttura.
+- Al 1° ottobre 2026 il sito è online come demo non indicizzata: nessun utente
+  reale né metrica di traffico da citare.
+- La versione con pagamenti è stata completata e verificata in modalità test di
+  Stripe, mai con incassi reali.
 
 ---
 
-## In breve
+# Prima versione con pagamenti (tag `v1-stripe`)
+
+Il resto della scheda descrive la prima versione: catalogo avventure con
+prenotazione e pagamento, checkout Stripe a due fasi e area riservata. Non è
+più in produzione, ma resta il pezzo tecnicamente più impegnativo del progetto.
+
+Il caso interessante di questa versione non è la costruzione del sito: è che
+il denaro passa dentro un sistema distribuito che nessuno controlla per
+intero — il browser del cliente, Stripe, un database, un servizio email, un
+cron — e che quasi tutte le decisioni difficili nascono da lì.
 
 | | |
 |---|---|
 | **Cosa** | Blog, catalogo avventure con prenotazione e pagamento, pagina referral |
-| **Per chi** | Una cliente non tecnica, che gestisce i contenuti da sola |
-| **Lingue** | Italiano (principale) e inglese |
-| **Stack** | Next.js 16 · React 19 · TypeScript strict · Tailwind 4 |
 | **Dati** | Sanity (contenuti) + Postgres/Neon con Drizzle (transazioni) |
 | **Pagamenti** | Stripe Checkout, due fasi per i viaggi multi-giorno |
-| **Email** | Resend + React Email |
 | **Auth** | Clerk, confinato alla sola area riservata |
 | **Test** | Vitest, 61 casi di dominio · CI su GitHub Actions |
-| **Stato** | Flusso completo e provato end-to-end · non ancora in produzione |
-
-36 commit, un commit conventional per passo.
-
----
+| **Stato** | Flusso completo e provato end-to-end in modalità test |
 
 ## L'obiettivo
 
@@ -463,7 +497,7 @@ regge tutta la pagina di esito del checkout.
 
 ---
 
-## Stato attuale
+## Stato della v1 al momento del pivot
 
 **Funzionante e provato:** i18n, schema e migration, schemi CMS e Studio, route
 pubbliche, anti-overbooking, checkout per entrambe le fasi, verifica firma
@@ -485,7 +519,7 @@ non scade, PaymentIntent salvati per fase, test di dominio, CI.
 
 ---
 
-## Prossimi passi
+## Prossimi passi previsti per la v1 (non più attivi)
 
 1. **Passaggio degli account alla cliente.** Il servizio di pagamento
    soprattutto: chi ha l'account è chi incassa, e quindi chi è responsabile

@@ -105,14 +105,15 @@ const RAW = {
         caseStudy: "/projects/matchday",
       },
       {
-        title: "Trekking Marti",
+        title: "Vagabondando",
         desc: tr(
-          "Sito bilingue per escursioni e viaggi guidati, con catalogo e blog gestiti tramite Sanity. Le prenotazioni usano Stripe, con pagamento completo o acconto e saldo, e PostgreSQL per gestire posti e pagamenti.",
-          "A bilingual site for guided hikes and trips, with a catalogue and blog managed through Sanity. Bookings use Stripe for full payments or deposits and balances, with PostgreSQL managing capacity and payments."
+          "Sito bilingue di diari di viaggio per un’accompagnatrice di trekking, online su vagabondando.site. La cliente scrive i racconti in Sanity Studio e le pagine si aggiornano entro un minuto; il form contatti è protetto da BotID, honeypot e rate limit su Redis. La prima versione gestiva prenotazioni con Stripe e PostgreSQL.",
+          "A bilingual travel-journal site for a trekking guide, live at vagabondando.site. The client writes her stories in Sanity Studio and pages update within a minute; the contact form is protected by BotID, a honeypot and a Redis rate limit. The first version handled bookings with Stripe and PostgreSQL."
         ),
-        tags: ["Next.js", "TypeScript", "Stripe", "PostgreSQL", "Sanity"],
+        tags: ["Next.js", "TypeScript", "Sanity", "next-intl", "Resend", "Upstash Redis"],
         color: "#6C63FF",
-        link: "#",
+        link: "https://vagabondando.site",
+        caseStudy: "/projects/vagabondando",
       },
       {
         title: "qrinventory",

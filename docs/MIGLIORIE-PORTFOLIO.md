@@ -6,16 +6,16 @@ verificare le modifiche in locale; pubblicare solo su richiesta.
 
 ## Priorità alta
 
-- [ ] **Creare pagine di approfondimento per Runebog GM, Trekking Marti e
+- [ ] **Creare pagine di approfondimento per Runebog GM, Vagabondando e
   Matchday.** Per ciascuna: problema o obiettivo, cosa è stato costruito,
   2–3 schermate reali, una scelta tecnica significativa e link al prodotto o al
   codice quando disponibili. Mantenere le illustrazioni attuali come copertine.
   Usare le informazioni già raccolte in `docs/PROJECT-BRIEF-RUNEBOG.en.md`,
   `docs/SCHEDA-PROGETTO-RUNEBOG.md` e
-  `docs/SCHEDA-PROGETTO-TREKKING-MARTI.md`; preparare la scheda di Matchday
+  `docs/SCHEDA-PROGETTO-VAGABONDANDO.md`; preparare la scheda di Matchday
   verificando i dettagli nel progetto. Evitare risultati o numeri non verificati.
   Matchday è fatto: `/projects/matchday`, dati in `src/data/caseStudies.js`,
-  scheda in `docs/SCHEDA-PROGETTO-MATCHDAY.md`. Restano Runebog GM e Trekking Marti.
+  scheda in `docs/SCHEDA-PROGETTO-MATCHDAY.md`. Restano Runebog GM e Vagabondando.
 - [x] **Aggiungere “How we’d work together” alla homepage**, con traduzione IT:
   capire l'idea, costruire una prima versione, rifinire e pubblicare. Per ogni
   passaggio dire in termini semplici cosa riceve il cliente. Collegare la

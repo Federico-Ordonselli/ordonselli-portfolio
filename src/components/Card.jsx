@@ -5,7 +5,7 @@ import ProjectArt from "./ProjectArt.jsx";
 function Card({ title, desc, tags, link, caseStudy, icon }) {
   const external = Boolean(link) && link !== "#";
   const interactive = Boolean(caseStudy) || external;
-  const art = { 'Runebog GM': 'runebog', 'Trekking Marti': 'trekking', Matchday: 'matchday' }[title];
+  const art = { 'Runebog GM': 'runebog', Vagabondando: 'trekking', Matchday: 'matchday' }[title];
   // Un approfondimento interno ha la precedenza sul link esterno: la pagina riporta comunque al codice.
   const Root = caseStudy ? Link : external ? "a" : "div";
   const linkProps = caseStudy ? { href: caseStudy } : external ? { href: link, target: "_blank", rel: "noopener noreferrer" } : {};

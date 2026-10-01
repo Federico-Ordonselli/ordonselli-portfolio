@@ -20,7 +20,7 @@ export default function CaseStudyPage({ slug }) {
         <p className="detail-intro">{item.intro[lang]}</p>
         <div className="case-links">
           {demo && <a className="cta cta-dark" href={demo} target="_blank" rel="noopener noreferrer">{en ? 'Open the demo' : 'Apri la demo'} ↗</a>}
-          <a className={demo ? 'text-link' : 'cta cta-dark'} href={repo} target="_blank" rel="noopener noreferrer">{en ? 'Source code on GitLab' : 'Codice su GitLab'} ↗</a>
+          {repo && <a className={demo ? 'text-link' : 'cta cta-dark'} href={repo} target="_blank" rel="noopener noreferrer">{en ? 'Source code on GitLab' : 'Codice su GitLab'} ↗</a>}
         </div>
       </div>
       <ProjectArt kind={item.art} />

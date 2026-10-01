@@ -15,7 +15,7 @@ export default function HomePage() {
   const data = getContent(lang);
   const selected = [
     { title: 'Runebog GM', kind: 'runebog', slug: 'runebog-gm', category: 'WEB APP / NEXT.JS', desc: en ? 'An entire world, organised in a web app.' : 'Un intero mondo, organizzato in una web app.', tags: ['Map editor', 'Cloud save', 'Auth.js'] },
-    { title: 'Trekking Marti', kind: 'trekking', slug: 'trekking-marti', category: 'BOOKING / E-COMMERCE', desc: en ? 'From discovering a hike to booking your place.' : 'Dalla scoperta di un viaggio alla prenotazione.', tags: ['Next.js', 'Stripe', 'Sanity CMS'] },
+    { title: 'Vagabondando', kind: 'trekking', slug: 'vagabondando', href: '/projects/vagabondando', category: en ? 'CLIENT SITE / CMS' : 'SITO CLIENTE / CMS', desc: en ? 'Travel stories, written by the client herself.' : 'Racconti di viaggio, scritti dalla cliente.', tags: ['Next.js', 'Sanity CMS', 'Resend'] },
     { title: 'Matchday', kind: 'matchday', slug: 'matchday', href: '/projects/matchday', category: 'FULL STACK / MONOREPO', desc: en ? 'Real football data. A complete platform.' : 'Dati calcistici reali. Una piattaforma completa.', tags: ['React', 'Express', 'PostgreSQL'] },
   ];
   const processSteps = en ? [
