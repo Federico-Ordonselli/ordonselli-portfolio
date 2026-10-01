@@ -2,9 +2,145 @@
 // Ogni testo è { it, en }, come in expertise.js. I contenuti di Matchday sono
 // verificati sul README e sulla guida al deploy del repository (release v1.0.0);
 // fonte completa e punti da confermare in docs/SCHEDA-PROGETTO-MATCHDAY.md.
-// Vagabondando segue il documento di progetto di ottobre 2026, riassunto in
+// Runebog GM segue docs/SCHEDA-PROGETTO-RUNEBOG.md, con i dati aggiornati sul
+// repository a v0.2.9 (29 settembre 2026). Vagabondando segue il documento di progetto di ottobre 2026, riassunto in
 // docs/SCHEDA-PROGETTO-VAGABONDANDO.md.
 export const caseStudies = [
+  {
+    slug: 'runebog-gm',
+    title: 'Runebog GM',
+    art: 'runebog',
+    eyebrow: { it: 'WEB APP · NEXT.JS + JAVASCRIPT VANILLA · v0.2.9', en: 'WEB APP · NEXT.JS + VANILLA JAVASCRIPT · v0.2.9' },
+    headline: { it: 'Un intero mondo, organizzato in una web app.', en: 'An entire world, organised in a web app.' },
+    intro: {
+      it: 'Runebog GM è uno strumento per chi guida partite di giochi di ruolo da tavolo. È nato per una one-shot di compleanno ed è cresciuto fino a diventare un’applicazione completa: mappe annidabili dal mondo alla singola stanza, regole e bestiario D&D 5e in italiano, un tavolo condiviso con i giocatori e un’app portable per Windows. È un progetto personale AI-assisted: l’ho progettato e rilasciato io, con il codice scritto insieme a Claude Code.',
+      en: 'Runebog GM is a tool for people who run tabletop role-playing games. It started as a birthday one-shot and grew into a complete application: maps that nest from a whole world down to a single room, D&D 5e rules and monsters in Italian, a table shared with players and a portable Windows app. It is a personal AI-assisted project: I designed and released it, with the code written together with Claude Code.',
+    },
+    facts: [
+      { label: { it: 'Ruolo', en: 'Role' }, value: { it: 'Progetto personale AI-assisted: progettazione, revisione e rilascio', en: 'Personal AI-assisted project: design, review and release' } },
+      { label: { it: 'Stack', en: 'Stack' }, value: { it: 'Next.js 15 · React 19 · TypeScript · Auth.js · PostgreSQL (Neon) · Drizzle · editor in JavaScript vanilla · Electron', en: 'Next.js 15 · React 19 · TypeScript · Auth.js · PostgreSQL (Neon) · Drizzle · vanilla JavaScript editor · Electron' } },
+      { label: { it: 'Qualità', en: 'Quality' }, value: { it: 'Oltre 200 test con node:test · GitHub Actions: tipi, test e build', en: 'Over 200 tests with node:test · GitHub Actions: types, tests and build' } },
+      { label: { it: 'Stato', en: 'Status' }, value: { it: 'Online su runebog.app · gratuito · sorgente pubblico con licenza non commerciale', en: 'Live at runebog.app · free · public source under a non-commercial licence' } },
+    ],
+    problem: {
+      it: 'Durante una partita il master deve avere sotto mano luoghi, personaggi, quest e mostri, e mostrare ai giocatori solo ciò che hanno scoperto. Gli strumenti esistenti sono spesso in inglese, a pagamento o pensati per una sola scala di mappa. L’obiettivo era un diario unico che seguisse la campagna dal continente alla stanza, funzionasse anche senza rete e non perdesse mai il lavoro.',
+      en: 'During a session the game master needs places, characters, quests and monsters at hand, and must show players only what they have discovered. Existing tools are often English-only, paid, or built around a single map scale. The goal was one journal that follows the campaign from continent to room, works offline and never loses work.',
+    },
+    solution: {
+      it: 'Due applicazioni che condividono un solo formato. Il sito Next.js gestisce account, salvataggio su PostgreSQL, tavolo condiviso e pagine delle regole. L’editor delle mappe è JavaScript vanilla in moduli ES, senza framework, dipendenze o build: gira identico nel sito, offline come PWA e dentro l’app portable per Windows. Tutta la campagna è un unico JSON, uguale per esportazione, database e pagina.',
+      en: 'Two applications sharing a single format. The Next.js site handles accounts, PostgreSQL saves, the shared table and the rules pages. The map editor is vanilla JavaScript in ES modules, with no framework, dependencies or build step: it runs the same in the site, offline as a PWA and inside the portable Windows app. A whole campaign is one JSON document, identical for export, the database and the page.',
+    },
+    features: [
+      {
+        title: { it: 'Mappe a bolle annidate', en: 'Nested bubble maps' },
+        text: {
+          it: 'Ogni luogo è una “bolla” che può contenerne altre, senza limite di profondità: una città contiene quartieri, un edificio contiene stanze. Collegamenti tipizzati, segnalini per quest, incontri e personaggi, e uno zoom indietro che allarga la campagna a posteriori.',
+          en: 'Every place is a “bubble” that can contain others, with no depth limit: a city holds districts, a building holds rooms. Typed connections, markers for quests, encounters and characters, and a zoom-out that widens the campaign after the fact.',
+        },
+      },
+      {
+        title: { it: 'Piante giocabili', en: 'Playable floor plans' },
+        text: {
+          it: 'Muri, porte di vari tipi, griglia quadrata o a esagoni in scala, pavimenti dipinti con materiali e riva fra acqua e terra. Righello in metri, aree d’effetto e modalità combattimento con pedine e ordine d’iniziativa.',
+          en: 'Walls, several kinds of doors, a scaled square or hex grid, painted floors with materials and shorelines between water and land. A ruler in metres, areas of effect and a combat mode with tokens and initiative order.',
+        },
+      },
+      {
+        title: { it: 'Tavolo per i giocatori', en: 'Player table' },
+        text: {
+          it: 'Un link segreto mostra ai giocatori solo ciò che il master ha rivelato, aggiornandosi da solo. Nell’app per Windows c’è anche un tavolo in rete locale: i telefoni inquadrano un QR e funziona senza Internet.',
+          en: 'A secret link shows players only what the game master has revealed, updating on its own. The Windows app also offers a local network table: phones scan a QR code and it works without Internet access.',
+        },
+      },
+      {
+        title: { it: 'Regole e bestiario in italiano', en: 'Rules and monsters in Italian' },
+        text: {
+          it: 'Circa 330 schede mostro e dieci capitoli di regole dell’SRD 5.2.1, con ricerca e rimandi navigabili. Le schede si collegano agli incontri della mappa, dove si tengono i punti ferita durante il combattimento.',
+          en: 'About 330 monster stat blocks and ten rules chapters from the SRD 5.2.1, with search and navigable cross-references. Stat blocks link to the map’s encounters, where hit points are tracked during combat.',
+        },
+      },
+      {
+        title: { it: 'Generatore di dungeon', en: 'Dungeon generator' },
+        text: {
+          it: 'Dungeon generati da un seed, quindi riproducibili: stanze, corridoi, muri, incontri bilanciati sul livello del gruppo e personaggi già all’ingresso. Il risultato entra nella campagna come una bolla qualsiasi.',
+          en: 'Dungeons generated from a seed, so they are reproducible: rooms, corridors, walls, encounters balanced to the party’s level and characters waiting at the entrance. The result joins the campaign like any other bubble.',
+        },
+      },
+      {
+        title: { it: 'Quest, calendario e temi', en: 'Quests, calendar and themes' },
+        text: {
+          it: 'Diario delle quest con stati e filtri, calendario di gioco con scadenze ed eventi ricorrenti legati ai luoghi, checklist e scheda dei giocatori. Undici temi grafici, tutti controllati automaticamente per il contrasto WCAG.',
+          en: 'A quest log with states and filters, an in-game calendar with deadlines and recurring events tied to places, checklists and a player sheet. Eleven visual themes, all checked automatically for WCAG contrast.',
+        },
+      },
+    ],
+    screenshots: [
+      {
+        src: '/projects/runebog/map.jpg', width: 1000, height: 633,
+        alt: { it: 'Editor di Runebog con la campagna d’esempio: luoghi collegati da strade, un ponte e un passaggio segreto, segnalini di quest e personaggi, e pannello dei dettagli a destra.', en: 'Runebog editor with the example campaign: places connected by a road, a bridge and a secret passage, quest and character markers, and the details panel on the right.' },
+        caption: { it: 'Mappa della campagna d’esempio', en: 'Example campaign map' },
+      },
+      {
+        src: '/projects/runebog/monster-mobile.jpg', width: 390, height: 806,
+        alt: { it: 'Scheda dell’aboleth da telefono: classe armatura, punti ferita, caratteristiche, sensi, lingue e primi tratti, in italiano.', en: 'The aboleth stat block on a phone: armour class, hit points, ability scores, senses, languages and first traits, in Italian.' },
+        caption: { it: 'Scheda mostro da telefono', en: 'Monster stat block on a phone' },
+      },
+      {
+        src: '/projects/runebog/dungeon.jpg', width: 1000, height: 633,
+        alt: { it: 'Dungeon generato con undici stanze collegate da corridoi, e nel pannello il riepilogo di seed, livello del gruppo, creature e bottino.', en: 'A generated dungeon with eleven rooms linked by corridors, and a panel summarising the seed, party level, creatures and treasure.' },
+        caption: { it: 'Dungeon generato da un seed', en: 'Dungeon generated from a seed' },
+      },
+    ],
+    screenshotNote: {
+      it: 'Schermate reali di runebog.app, ottobre 2026, con la campagna d’esempio. La scheda mostro include materiale del System Reference Document 5.2.1 di Wizards of the Coast LLC, disponibile su dndbeyond.com/srd con licenza Creative Commons Attribution 4.0. Runebog non è un prodotto ufficiale né affiliato.',
+      en: 'Real screenshots of runebog.app, October 2026, using the example campaign. The stat block includes material from the System Reference Document 5.2.1 by Wizards of the Coast LLC, available at dndbeyond.com/srd under the Creative Commons Attribution 4.0 licence. Runebog is not an official or affiliated product.',
+    },
+    decisions: [
+      {
+        title: { it: 'Un solo JSON per tutto', en: 'One JSON for everything' },
+        text: {
+          it: 'La campagna ha la stessa forma nel file esportato, nella colonna JSONB del database e nella pagina. Non esiste una seconda rappresentazione da tenere allineata, e un modulo senza dipendenze definisce il contratto per entrambe le applicazioni.',
+          en: 'A campaign has the same shape in the exported file, the database’s JSONB column and the page. There is no second representation to keep in sync, and a dependency-free module defines the contract for both applications.',
+        },
+      },
+      {
+        title: { it: 'Editor senza framework', en: 'A framework-free editor' },
+        text: {
+          it: 'L’editor è JavaScript vanilla con SVG scritto a mano e Pointer Events: nessuna dipendenza e nessun build step. Per questo lo stesso codice funziona nel sito, offline e nell’eseguibile Windows. È una scelta deliberata, non una mancanza.',
+          en: 'The editor is vanilla JavaScript with hand-written SVG and Pointer Events: no dependencies and no build step. That is why the same code runs in the site, offline and in the Windows executable. It is a deliberate choice, not a gap.',
+        },
+      },
+      {
+        title: { it: 'Conflitti senza perdite', en: 'Conflicts without data loss' },
+        text: {
+          it: 'Ogni salvataggio dichiara la revisione da cui parte e la condizione sta dentro l’UPDATE: zero righe aggiornate significa conflitto. Con otto scritture concorrenti ne passa una sola. La copia locale si salva prima della richiesta e l’utente sceglie fra azioni esplicite, senza fusioni automatiche.',
+          en: 'Every save declares the revision it starts from and the condition lives inside the UPDATE: zero rows updated means a conflict. With eight concurrent writes, only one gets through. The local copy is saved before the request and the user picks between explicit actions, with no automatic merging.',
+        },
+      },
+      {
+        title: { it: 'Il tavolo si costruisce sul server', en: 'The table is built on the server' },
+        text: {
+          it: 'Ai giocatori non arriva la campagna filtrata dal browser, ma una proiezione ricostruita sul server campo per campo: note del master assenti, passaggi segreti invisibili, porte segrete mostrate come muro. Gli aggiornamenti usano richieste condizionali con ETag.',
+          en: 'Players do not receive the campaign filtered in the browser, but a projection rebuilt on the server field by field: no game master notes, hidden secret passages, secret doors drawn as walls. Updates use conditional requests with ETags.',
+        },
+      },
+      {
+        title: { it: 'Regole estratte dal PDF', en: 'Rules extracted from the PDF' },
+        text: {
+          it: 'Capitoli e schede mostro vengono da script propri che leggono il PDF ufficiale, dove il significato sta nei font e nei colori più che nel testo: titoli riconosciuti dal colore, tabelle ricostruite dalla geometria delle colonne. Ogni capitolo viene confrontato con il testo del PDF prima di essere pubblicato.',
+          en: 'Chapters and stat blocks come from custom scripts that read the official PDF, where meaning lives in fonts and colours more than in the text: headings recognised by colour, tables rebuilt from column geometry. Each chapter is compared with the PDF text before publishing.',
+        },
+      },
+    ],
+    limits: {
+      it: 'Runebog è un progetto personale gratuito, non un prodotto commerciale, e non ho dati pubblici su utenti o traffico. Il codice è pubblico con licenza PolyForm Noncommercial 1.0.0, che non consente l’uso commerciale; i contenuti SRD sono CC-BY-4.0. L’app per Windows è un eseguibile portable, non un’app da store.',
+      en: 'Runebog is a free personal project, not a commercial product, and I have no public user or traffic data. The code is public under the PolyForm Noncommercial 1.0.0 licence, which does not allow commercial use; the SRD content is CC-BY-4.0. The Windows app is a portable executable, not a store app.',
+    },
+    links: {
+      repo: 'https://github.com/Federico-Ordonselli/runebog-gm',
+      demo: 'https://runebog.app',
+    },
+  },
   {
     slug: 'matchday',
     title: 'Matchday',

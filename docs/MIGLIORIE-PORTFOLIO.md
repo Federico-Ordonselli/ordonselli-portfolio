@@ -6,7 +6,7 @@ verificare le modifiche in locale; pubblicare solo su richiesta.
 
 ## Priorità alta
 
-- [ ] **Creare pagine di approfondimento per Runebog GM, Vagabondando e
+- [x] **Creare pagine di approfondimento per Runebog GM, Vagabondando e
   Matchday.** Per ciascuna: problema o obiettivo, cosa è stato costruito,
   2–3 schermate reali, una scelta tecnica significativa e link al prodotto o al
   codice quando disponibili. Mantenere le illustrazioni attuali come copertine.
@@ -17,7 +17,8 @@ verificare le modifiche in locale; pubblicare solo su richiesta.
   Matchday è fatto: `/projects/matchday`, dati in `src/data/caseStudies.js`,
   scheda in `docs/SCHEDA-PROGETTO-MATCHDAY.md`. Vagabondando è fatto:
   `/projects/vagabondando`, scheda in `docs/SCHEDA-PROGETTO-VAGABONDANDO.md`.
-  Resta Runebog GM.
+  Runebog GM è fatto: `/projects/runebog-gm`, dati aggiornati al repository
+  v0.2.9 (29 settembre 2026).
 - [x] **Aggiungere “How we’d work together” alla homepage**, con traduzione IT:
   capire l'idea, costruire una prima versione, rifinire e pubblicare. Per ogni
   passaggio dire in termini semplici cosa riceve il cliente. Collegare la

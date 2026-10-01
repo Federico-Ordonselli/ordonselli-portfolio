@@ -92,6 +92,7 @@ const RAW = {
         tags: ["Next.js", "JavaScript", "TypeScript", "PostgreSQL", "Auth.js"],
         color: "#43B89C",
         link: "https://runebog.app",
+        caseStudy: "/projects/runebog-gm",
       },
       {
         title: "Matchday",
