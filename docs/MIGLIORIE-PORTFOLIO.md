@@ -15,7 +15,9 @@ verificare le modifiche in locale; pubblicare solo su richiesta.
   `docs/SCHEDA-PROGETTO-VAGABONDANDO.md`; preparare la scheda di Matchday
   verificando i dettagli nel progetto. Evitare risultati o numeri non verificati.
   Matchday è fatto: `/projects/matchday`, dati in `src/data/caseStudies.js`,
-  scheda in `docs/SCHEDA-PROGETTO-MATCHDAY.md`. Restano Runebog GM e Vagabondando.
+  scheda in `docs/SCHEDA-PROGETTO-MATCHDAY.md`. Vagabondando è fatto:
+  `/projects/vagabondando`, scheda in `docs/SCHEDA-PROGETTO-VAGABONDANDO.md`.
+  Resta Runebog GM.
 - [x] **Aggiungere “How we’d work together” alla homepage**, con traduzione IT:
   capire l'idea, costruire una prima versione, rifinire e pubblicare. Per ogni
   passaggio dire in termini semplici cosa riceve il cliente. Collegare la
