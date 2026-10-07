@@ -19,6 +19,13 @@ verificare le modifiche in locale; pubblicare solo su richiesta.
   `/projects/vagabondando`, scheda in `docs/SCHEDA-PROGETTO-VAGABONDANDO.md`.
   Runebog GM è fatto: `/projects/runebog-gm`, dati aggiornati al repository
   v0.2.9 (29 settembre 2026).
+  StudyBuddy v2 è aggiunto (7 ottobre 2026): `/projects/studybuddy`, scheda
+  in `docs/SCHEDA-PROGETTO-STUDYBUDDY.md`; sostituisce la card Learning Vault.
+- [ ] **StudyBuddy: video demo e valutazione del retrieval.** Un video muto di
+  30–60 s in cima alla case study (domanda → citazione → video al minuto giusto
+  → ingresso in una bolla), dichiarando se è velocizzato. Poi, quando esiste,
+  un grafico recall@6 su 20–30 domande: solo dense, solo BM25, ibrido, ibrido +
+  rerank. Sono dati da produrre, non da stimare.
 - [x] **Aggiungere “How we’d work together” alla homepage**, con traduzione IT:
   capire l'idea, costruire una prima versione, rifinire e pubblicare. Per ogni
   passaggio dire in termini semplici cosa riceve il cliente. Collegare la

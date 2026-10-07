@@ -24,6 +24,7 @@
 .case-section .detail-points { margin: 0; }
 .case-section .detail-points h3 { margin-top: 10px; }
 .case-shots { display: grid; grid-template-columns: 1fr minmax(0, .42fr) 1fr; gap: 20px; align-items: start; }
+.case-shots-grid { grid-template-columns: 1fr 1fr; }
 .case-shots figure { margin: 0; }
 .case-shots img { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 6px; background: #0d1117; }
 .case-shots figcaption { margin-top: 10px; color: #6b765a; text-transform: uppercase; }

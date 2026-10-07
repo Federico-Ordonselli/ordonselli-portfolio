@@ -127,14 +127,15 @@ const RAW = {
         link: "#",
       },
       {
-        title: "Learning Vault",
+        title: "StudyBuddy v2",
         desc: tr(
-          "Applicazione self-hosted che trasforma video e documenti in materiale di studio. Usa yt-dlp e Whisper per acquisire i contenuti, modelli locali con Ollama e SQLite con Drizzle per salvarli; si avvia con Docker.",
-          "A self-hosted app that turns videos and documents into study material. Uses yt-dlp and Whisper to ingest content, local models through Ollama and SQLite with Drizzle for storage; runs with Docker."
+          "Tutor di studio AI che gira tutto in locale su un corso online scaricato. Ricerca ibrida (sqlite-vec + BM25, fusione RRF, cross-encoder su GPU), tutor socratico che cita il minuto esatto del video, quiz valutati da un LLM, ripasso SM-2 e mappe concettuali esplorabili. In sviluppo attivo.",
+          "A local-first AI study tutor built on a downloaded online course. Hybrid retrieval (sqlite-vec + BM25, RRF fusion, GPU cross-encoder), a Socratic tutor that cites the exact minute of the video, LLM-graded quizzes, SM-2 review and explorable concept maps. In active development."
         ),
-        tags: ["Next.js", "React", "Tailwind", "Drizzle", "Ollama", "Docker"],
+        tags: ["Next.js", "TypeScript", "RAG", "SQLite", "Ollama", "Transformers.js"],
         color: "#FF6584",
-        link: "#",
+        link: "https://github.com/Federico-Ordonselli/studybuddy-v2",
+        caseStudy: "/projects/studybuddy",
       },
     ],
     cyber: [

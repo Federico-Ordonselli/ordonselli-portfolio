@@ -40,7 +40,7 @@ export default function CaseStudyPage({ slug }) {
 
     <section className="case-section" aria-labelledby="case-screens">
       <h2 id="case-screens">{en ? 'Screens' : 'Schermate'}</h2>
-      <div className="case-shots">{item.screenshots.map(shot => <figure key={shot.src} className={shot.height > shot.width ? 'is-tall' : undefined}>
+      <div className={item.shotLayout === 'grid' ? 'case-shots case-shots-grid' : 'case-shots'}>{item.screenshots.map(shot => <figure key={shot.src} className={shot.height > shot.width * 1.2 ? 'is-tall' : undefined}>
         <img src={shot.src} width={shot.width} height={shot.height} alt={shot.alt[lang]} loading="lazy" decoding="async" />
         <figcaption className="mono">{shot.caption[lang]}</figcaption>
       </figure>)}</div>

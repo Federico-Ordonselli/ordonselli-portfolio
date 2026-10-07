@@ -4,7 +4,9 @@
 // fonte completa e punti da confermare in docs/SCHEDA-PROGETTO-MATCHDAY.md.
 // Runebog GM segue docs/SCHEDA-PROGETTO-RUNEBOG.md, con i dati aggiornati sul
 // repository a v0.2.9 (29 settembre 2026). Vagabondando segue il documento di progetto di ottobre 2026, riassunto in
-// docs/SCHEDA-PROGETTO-VAGABONDANDO.md.
+// docs/SCHEDA-PROGETTO-VAGABONDANDO.md. StudyBuddy v2 segue il README di
+// portfolio scritto a ottobre 2026 (docs/SCHEDA-PROGETTO-STUDYBUDDY.md), con i
+// numeri verificati sul repository studybuddy-v2 al 7 ottobre 2026.
 export const caseStudies = [
   {
     slug: 'runebog-gm',
@@ -409,6 +411,146 @@ export const caseStudies = [
     },
     links: {
       demo: 'https://vagabondando.site',
+    },
+  },
+  {
+    slug: 'studybuddy',
+    title: 'StudyBuddy v2',
+    art: 'studybuddy',
+    eyebrow: { it: 'AI LOCALE · RAG · NEXT.JS + OLLAMA · IN SVILUPPO', en: 'LOCAL AI · RAG · NEXT.JS + OLLAMA · IN DEVELOPMENT' },
+    headline: { it: 'Un tutor che conosce il tuo corso.', en: 'A tutor that knows your course.' },
+    intro: {
+      it: 'StudyBuddy trasforma un corso online scaricato (video, trascrizioni, PDF e letture) in un tutor personale: risponde con il metodo socratico citando il minuto esatto del video, genera quiz e flashcard con ripetizione spaziata, riassunti e mappe concettuali esplorabili. Tutto gira su una GPU consumer, senza che nessun dato esca dal computer. È un progetto personale AI-assisted: ho deciso io architettura, modelli e prodotto, con il codice scritto insieme a Claude Code.',
+      en: 'StudyBuddy turns a downloaded online course (videos, transcripts, PDFs and readings) into a personal tutor: it answers Socratically, citing the exact minute of the video, and generates quizzes, spaced-repetition flashcards, summaries and explorable concept maps. Everything runs on a consumer GPU, and no data leaves the computer. It is a personal AI-assisted project: I chose the architecture, models and product, with the code written together with Claude Code.',
+    },
+    facts: [
+      { label: { it: 'Ruolo', en: 'Role' }, value: { it: 'Progetto personale AI-assisted: architettura, scelta dei modelli e prodotto', en: 'Personal AI-assisted project: architecture, model selection and product' } },
+      { label: { it: 'Stack', en: 'Stack' }, value: { it: 'Next.js 16 · React 19 · TypeScript · SQLite (Drizzle, sqlite-vec, FTS5) · Ollama · Transformers.js', en: 'Next.js 16 · React 19 · TypeScript · SQLite (Drizzle, sqlite-vec, FTS5) · Ollama · Transformers.js' } },
+      { label: { it: 'Scala', en: 'Scale' }, value: { it: '783 documenti da 9 corsi · 2.321 chunk · ~3–6 s per risposta su una RTX 4080 Super', en: '783 documents from 9 courses · 2,321 chunks · ~3–6 s per answer on an RTX 4080 Super' } },
+      { label: { it: 'Stato', en: 'Status' }, value: { it: 'In sviluppo attivo, in uso quotidiano · codice pubblico su GitHub', en: 'In active development and daily use · public code on GitHub' } },
+    ],
+    problem: {
+      it: 'I corsi online sono pieni di materiale ma poveri di interazione: ore di video e centinaia di file, e quando hai un dubbio ritrovare dove se ne parlava è lento. Gli assistenti AI generalisti non sanno cosa dice il tuo corso, inventano dettagli e chiedono di caricare il materiale su servizi esterni. Volevo un compagno di studio che risponda solo in base al corso citando le fonti, mi faccia ragionare invece di darmi la soluzione e programmi il ripasso, senza abbonamenti né API a consumo.',
+      en: 'Online courses are full of material but short on interaction: hours of video and hundreds of files, and when you have a doubt, finding where it was covered is slow. General AI assistants do not know what your course says, make up details and ask you to upload the material to external services. I wanted a study companion that answers only from the course, cites its sources, makes me reason instead of handing me the answer and schedules my reviews, with no subscriptions or pay-per-use APIs.',
+    },
+    solution: {
+      it: 'Un comando di ingestion legge la cartella del corso, spezza trascrizioni, letture e PDF in passaggi che ricordano il proprio minuto di video, e li indicizza in un unico file SQLite. A ogni domanda una ricerca ibrida (semantica e per parole chiave) trova 20 candidati, un cross-encoder su GPU tiene i 6 migliori, e un modello da 12B in locale risponde usando solo quelli. Ogni chiamata ai modelli passa da un livello unico che assegna a ciascun compito il suo modello.',
+      en: 'An ingestion command reads the course folder, splits transcripts, readings and PDFs into passages that remember their minute in the video, and indexes them in a single SQLite file. For each question a hybrid search (semantic and keyword) finds 20 candidates, a cross-encoder on the GPU keeps the best 6, and a local 12B model answers using only those. Every model call goes through a single layer that assigns each task its own model.',
+    },
+    features: [
+      {
+        title: { it: 'Tutor socratico con citazioni', en: 'Socratic tutor with citations' },
+        text: {
+          it: 'Il tutor non dà la risposta: conferma, aggiunge un pezzo e rilancia con una domanda. Ogni risposta mostra fonti numerate; un clic su una trascrizione apre il video integrato esattamente al minuto in cui il docente ne parla. Funziona anche con domande in italiano su materiale in inglese.',
+          en: 'The tutor does not give the answer: it confirms, adds a piece and asks the next question. Every answer shows numbered sources; clicking a transcript opens the built-in player at the exact minute the instructor covers it. It also works with questions in Italian on English material.',
+        },
+      },
+      {
+        title: { it: 'Quiz valutati da un LLM', en: 'LLM-graded quizzes' },
+        text: {
+          it: 'Dato un argomento, il modello genera una domanda a scelta multipla con un JSON schema imposto. Un secondo prompt fa da giudice: voto da 0 a 5 e spiegazione ancorata al testo del corso.',
+          en: 'Given a topic, the model generates a multiple-choice question constrained by a JSON schema. A second prompt acts as the judge: a 0–5 grade and an explanation anchored to the course text.',
+        },
+      },
+      {
+        title: { it: 'Ripasso con SM-2', en: 'Spaced repetition with SM-2' },
+        text: {
+          it: 'Le flashcard nascono da un argomento o da un concetto della mappa. Rispondi a parole tue, l’LLM valuta e l’algoritmo SM-2, lo stesso alla base di Anki, decide quando riproporre la carta.',
+          en: 'Flashcards come from a topic or a concept on the map. You answer in your own words, the LLM grades it, and the SM-2 algorithm, the one behind Anki, decides when to show the card again.',
+        },
+      },
+      {
+        title: { it: 'Mappe concettuali esplorabili', en: 'Explorable concept maps' },
+        text: {
+          it: 'Il modello propone concetti e relazioni, ognuno con definizione, esempi e fonti. Con un doppio clic si entra in una bolla e il sotto-livello viene generato dal materiale, riusando i concetti già presenti. Le modifiche dell’AI sono comandi atomici: annulla e ripeti funzionano anche su di esse.',
+          en: 'The model proposes concepts and relations, each with a definition, examples and sources. Double-clicking enters a bubble and the sub-level is generated from the material, reusing concepts already on the map. AI edits are atomic commands, so undo and redo work on them too.',
+        },
+      },
+      {
+        title: { it: 'Riassunti e slide', en: 'Summaries and slides' },
+        text: {
+          it: 'I riassunti procedono a blocchi e poi sintetizzano il tutto (map-reduce), così anche un intero modulo entra nel contesto del modello. Le slide hanno illustrazioni SVG disegnate dal modello in locale.',
+          en: 'Summaries work in blocks and then combine them (map-reduce), so even a whole module fits in the model’s context. Slides come with SVG illustrations drawn by the local model.',
+        },
+      },
+      {
+        title: { it: 'Ingestion ripetibile', en: 'Repeatable ingestion' },
+        text: {
+          it: 'Ogni file ha un hash: rilanciare l’ingestion salta quelli invariati e sostituisce quelli modificati. I pochi video senza sottotitoli vengono trascritti da Whisper, su GPU quando c’è.',
+          en: 'Every file has a hash: rerunning ingestion skips unchanged files and replaces modified ones. The few videos without subtitles are transcribed by Whisper, on the GPU when available.',
+        },
+      },
+    ],
+    shotLayout: 'grid',
+    screenshots: [
+      {
+        src: '/projects/studybuddy/concept-map.jpg', width: 1200, height: 750,
+        alt: { it: 'Mappa concettuale su React: bolle collegate da relazioni come “include” e “vincolano”, con la scheda del concetto useEffect aperta a destra con definizione, esempi e collegamenti.', en: 'A concept map about React: bubbles linked by relations such as “include” and “constrain”, with the useEffect concept card open on the right showing its definition, examples and links.' },
+        caption: { it: 'Mappa concettuale e scheda del concetto', en: 'Concept map and concept card' },
+      },
+      {
+        src: '/projects/studybuddy/concept-map-level.jpg', width: 1200, height: 750,
+        alt: { it: 'Dentro la bolla useEffect: sotto-concetti generati dal materiale, come Dependency Array e Cleanup Function, con pillole tratteggiate che rimandano ad altri livelli.', en: 'Inside the useEffect bubble: sub-concepts generated from the material, such as Dependency Array and Cleanup Function, with dashed pills pointing to other levels.' },
+        caption: { it: 'Dentro una bolla: il sotto-livello', en: 'Inside a bubble: the sub-level' },
+      },
+      {
+        src: '/projects/studybuddy/socratic-tutor.jpg', width: 888, height: 900,
+        alt: { it: 'Il tutor socratico: il video della lezione, sfocato, aperto al minuto 4:20 sopra una domanda su useEffect e la risposta del tutor, che rilancia con una domanda.', en: 'The Socratic tutor: the lesson video, blurred, opened at 4:20 above a question about useEffect and the tutor’s reply, which answers with a question.' },
+        caption: { it: 'Una citazione apre il video al minuto giusto', en: 'A citation opens the video at the right minute' },
+      },
+      {
+        src: '/projects/studybuddy/quiz.jpg', width: 888, height: 880,
+        alt: { it: 'Quiz su Flexbox e Grid con quattro opzioni, sei fonti con timestamp e la valutazione finale con qualità SM-2 5 su 5.', en: 'A quiz on Flexbox and Grid with four options, six timestamped sources and the final grading with SM-2 quality 5 out of 5.' },
+        caption: { it: 'Quiz con fonti e valutazione', en: 'Quiz with sources and grading' },
+      },
+    ],
+    screenshotNote: {
+      it: 'Output reali dell’app, generati in locale sul materiale di un percorso di corsi front-end, ottobre 2026. Video, nome del corso e percorsi dei file sono sfocati per rispetto dei diritti sul materiale.',
+      en: 'Real app output, generated locally from a front-end course series, October 2026. Videos, the course name and file paths are blurred out of respect for the rights to the material.',
+    },
+    decisions: [
+      {
+        title: { it: 'Ricerca ibrida, fusa per posizione', en: 'Hybrid search, fused by rank' },
+        text: {
+          it: 'La ricerca semantica sbaglia sui termini esatti come useEffect; quella per parole chiave non capisce una domanda in italiano su materiale inglese. Uso entrambe (sqlite-vec e BM25 su FTS5) e le fondo con Reciprocal Rank Fusion, che unisce le liste per posizione e non deve confrontare punteggi incomparabili.',
+          en: 'Semantic search misses exact terms like useEffect; keyword search does not understand an Italian question on English material. I use both (sqlite-vec and BM25 on FTS5) and merge them with Reciprocal Rank Fusion, which combines the lists by rank and never has to compare incompatible scores.',
+        },
+      },
+      {
+        title: { it: 'Il contesto tagliato in silenzio', en: 'Context silently cut off' },
+        text: {
+          it: 'Ollama usa 4.096 token di contesto di default e, quando il prompt è più lungo, ne taglia l’inizio: proprio i passaggi del corso. Ho portato il contesto a 16k in modo esplicito.',
+          en: 'Ollama defaults to a 4,096-token context and, when the prompt is longer, cuts off its beginning: exactly the course passages. I set the context to 16k explicitly.',
+        },
+      },
+      {
+        title: { it: 'Reranker da 13 secondi a 0,6', en: 'Reranker from 13 seconds to 0.6' },
+        text: {
+          it: 'Senza troncamento, il padding al documento più lungo portava il cross-encoder a 13 secondi e 13 GB di RAM. Con batch da 8 e al massimo 512 token scende a 0,6 s su GPU. Su GPU i pesi int8 sono risultati più lenti degli fp16, perché molti operatori interi non hanno kernel CUDA e tornano sulla CPU.',
+          en: 'Without truncation, padding to the longest document pushed the cross-encoder to 13 seconds and 13 GB of RAM. With batches of 8 and at most 512 tokens it drops to 0.6 s on the GPU. On the GPU, int8 weights turned out slower than fp16, because many integer operators have no CUDA kernels and fall back to the CPU.',
+        },
+      },
+      {
+        title: { it: 'Un voto non valido non azzera una carta', en: 'An invalid grade never resets a card' },
+        text: {
+          it: 'Se il giudice LLM produce un output non valido anche dopo un nuovo tentativo, il sistema segnala un errore invece di registrare zero. Per SM-2 uno zero significa ricominciare da capo una carta già imparata.',
+          en: 'If the LLM judge returns invalid output even after a retry, the system reports an error instead of recording a zero. For SM-2, a zero means starting a card you already know from scratch.',
+        },
+      },
+      {
+        title: { it: 'Un’app locale va protetta lo stesso', en: 'A local app still needs protecting' },
+        text: {
+          it: 'Un sito malevolo può puntare il proprio dominio a 127.0.0.1 o inviare richieste cross-site a un server locale. Le API accettano solo host locali e scritture JSON, che obbligano il browser a un controllo CORS preventivo; i percorsi restano nella home e il server video serve solo file indicizzati.',
+          en: 'A malicious site can point its domain at 127.0.0.1 or send cross-site requests to a local server. The APIs accept only local hosts and JSON writes, which force a CORS preflight; paths stay inside the home folder, and the video server only serves indexed files.',
+        },
+      },
+    ],
+    limits: {
+      it: 'Al 7 ottobre 2026 StudyBuddy v2 è in sviluppo attivo: è un’app single-user e solo locale per scelta, senza autenticazione né sincronizzazione, e non ha ancora test automatici né una valutazione misurata della qualità del retrieval. Le illustrazioni SVG di un modello da 12B sono semplici e a volte imprecise, e le opzioni dei quiz possono riprendere frasi in inglese del materiale. Il codice è pubblico con licenza MIT, tranne il motore delle mappe, che resta sotto PolyForm Noncommercial.',
+      en: 'As of 7 October 2026, StudyBuddy v2 is in active development: it is a single-user, local-only app by design, with no authentication or sync, and it has no automated tests or measured retrieval-quality evaluation yet. SVG illustrations from a 12B model are simple and sometimes inaccurate, and quiz options can reuse English sentences from the material. The code is public under the MIT licence, except for the concept-map engine, which remains under PolyForm Noncommercial.',
+    },
+    links: {
+      repo: 'https://github.com/Federico-Ordonselli/studybuddy-v2',
     },
   },
 ];
