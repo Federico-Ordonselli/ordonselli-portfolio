@@ -3,16 +3,18 @@
 // verificati sul README e sulla guida al deploy del repository (release v1.0.0);
 // fonte completa e punti da confermare in docs/SCHEDA-PROGETTO-MATCHDAY.md.
 // Runebog GM segue docs/SCHEDA-PROGETTO-RUNEBOG.md, con i dati aggiornati sul
-// repository a v0.2.9 (29 settembre 2026). Vagabondando segue il documento di progetto di ottobre 2026, riassunto in
+// repository a v0.2.10 (2 ottobre 2026). Vagabondando segue il documento di progetto di ottobre 2026, riassunto in
 // docs/SCHEDA-PROGETTO-VAGABONDANDO.md. StudyBuddy v2 segue il README di
 // portfolio scritto a ottobre 2026 (docs/SCHEDA-PROGETTO-STUDYBUDDY.md), con i
-// numeri verificati sul repository studybuddy-v2 al 7 ottobre 2026.
+// numeri verificati sul repository studybuddy-v2 al 7 ottobre 2026 e test ed eval
+// aggiornati al 26 ottobre. Covershift segue l'overview di progetto del 26 ottobre
+// 2026 (docs/SCHEDA-PROGETTO-COVERSHIFT.md), verificata su README e report di fase 2.
 export const caseStudies = [
   {
     slug: 'runebog-gm',
     title: 'Runebog GM',
     art: 'runebog',
-    eyebrow: { it: 'WEB APP · NEXT.JS + JAVASCRIPT VANILLA · v0.2.9', en: 'WEB APP · NEXT.JS + VANILLA JAVASCRIPT · v0.2.9' },
+    eyebrow: { it: 'WEB APP · NEXT.JS + JAVASCRIPT VANILLA · v0.2.10', en: 'WEB APP · NEXT.JS + VANILLA JAVASCRIPT · v0.2.10' },
     headline: { it: 'Un intero mondo, organizzato in una web app.', en: 'An entire world, organised in a web app.' },
     intro: {
       it: 'Runebog GM è uno strumento per chi guida partite di giochi di ruolo da tavolo. È nato per una one-shot di compleanno ed è cresciuto fino a diventare un’applicazione completa: mappe annidabili dal mondo alla singola stanza, regole e bestiario D&D 5e in italiano, un tavolo condiviso con i giocatori e un’app portable per Windows. È un progetto personale AI-assisted: l’ho progettato e rilasciato io, con il codice scritto insieme a Claude Code.',
@@ -171,8 +173,8 @@ export const caseStudies = [
       {
         title: { it: 'Dati calcistici', en: 'Football data' },
         text: {
-          it: 'Competizioni, partite e classifiche da football-data.org. La chiave resta sul server, le risposte sono validate con Zod e convertite in tipi interni, e una cache aiuta a rispettare i limiti del piano gratuito.',
-          en: 'Competitions, fixtures and standings from football-data.org. The key stays on the server, responses are validated with Zod and mapped to internal types, and a cache helps respect the free tier’s limits.',
+          it: 'Competizioni, partite e classifiche da football-data.org. La chiave resta sul server, le risposte sono validate con Zod e convertite in tipi interni, e una cache aiuta a rispettare i limiti del piano gratuito. Se il fornitore è lento o limita le richieste, l’API serve l’ultima risposta in cache invece di un errore.',
+          en: 'Competitions, fixtures and standings from football-data.org. The key stays on the server, responses are validated with Zod and mapped to internal types, and a cache helps respect the free tier’s limits. If the provider is slow or rate-limits a refresh, the API serves the last cached response instead of an error.',
         },
       },
       {
@@ -250,8 +252,8 @@ export const caseStudies = [
       {
         title: { it: 'Stato persistente dove serve', en: 'Persistent state where it matters' },
         text: {
-          it: 'Quote offerte, puntate, limiti e sessioni operatore sono in PostgreSQL e sopravvivono al riavvio delle funzioni serverless. Una quota salvata conserva il prezzo mostrato all’utente e le modifiche del backoffice.',
-          en: 'Offered odds, bets, limits and operator sessions live in PostgreSQL and survive serverless restarts. A stored price keeps what the user was shown, along with back-office changes.',
+          it: 'Quote offerte, puntate, limiti e sessioni operatore sono in PostgreSQL e sopravvivono al riavvio delle funzioni serverless. Una quota salvata conserva il prezzo mostrato all’utente e le modifiche del backoffice. Le migrazioni partono all’avvio dell’API sotto un advisory lock di Postgres, così più avvii a freddo simultanei non le applicano due volte.',
+          en: 'Offered odds, bets, limits and operator sessions live in PostgreSQL and survive serverless restarts. A stored price keeps what the user was shown, along with back-office changes. Migrations run at API startup under a Postgres advisory lock, so several simultaneous cold starts never apply them twice.',
         },
       },
       {
@@ -417,17 +419,17 @@ export const caseStudies = [
     slug: 'studybuddy',
     title: 'StudyBuddy v2',
     art: 'studybuddy',
-    eyebrow: { it: 'AI LOCALE · RAG · NEXT.JS + OLLAMA · IN SVILUPPO', en: 'LOCAL AI · RAG · NEXT.JS + OLLAMA · IN DEVELOPMENT' },
+    eyebrow: { it: 'AI LOCALE · RAG · NEXT.JS + OLLAMA · IN USO', en: 'LOCAL AI · RAG · NEXT.JS + OLLAMA · IN DAILY USE' },
     headline: { it: 'Un tutor che conosce il tuo corso.', en: 'A tutor that knows your course.' },
     intro: {
-      it: 'StudyBuddy trasforma un corso online scaricato (video, trascrizioni, PDF e letture) in un tutor personale: risponde con il metodo socratico citando il minuto esatto del video, genera quiz e flashcard con ripetizione spaziata, riassunti e mappe concettuali esplorabili. Tutto gira su una GPU consumer, senza che nessun dato esca dal computer. È un progetto personale AI-assisted: ho deciso io architettura, modelli e prodotto, con il codice scritto insieme a Claude Code.',
-      en: 'StudyBuddy turns a downloaded online course (videos, transcripts, PDFs and readings) into a personal tutor: it answers Socratically, citing the exact minute of the video, and generates quizzes, spaced-repetition flashcards, summaries and explorable concept maps. Everything runs on a consumer GPU, and no data leaves the computer. It is a personal AI-assisted project: I chose the architecture, models and product, with the code written together with Claude Code.',
+      it: 'StudyBuddy trasforma i corsi online scaricati (video, trascrizioni, PDF e letture) in tutor personali: rispondono con il metodo socratico citando il minuto esatto del video, generano quiz e flashcard con ripetizione spaziata, riassunti e mappe concettuali esplorabili. Tutto gira su una GPU consumer, senza che nessun dato esca dal computer. È un progetto personale AI-assisted: ho deciso io architettura, modelli e prodotto, con il codice scritto insieme a Claude Code.',
+      en: 'StudyBuddy turns downloaded online courses (videos, transcripts, PDFs and readings) into personal tutors: they answer Socratically, citing the exact minute of the video, and generate quizzes, spaced-repetition flashcards, summaries and explorable concept maps. Everything runs on a consumer GPU, and no data leaves the computer. It is a personal AI-assisted project: I chose the architecture, models and product, with the code written together with Claude Code.',
     },
     facts: [
       { label: { it: 'Ruolo', en: 'Role' }, value: { it: 'Progetto personale AI-assisted: architettura, scelta dei modelli e prodotto', en: 'Personal AI-assisted project: architecture, model selection and product' } },
-      { label: { it: 'Stack', en: 'Stack' }, value: { it: 'Next.js 16 · React 19 · TypeScript · SQLite (Drizzle, sqlite-vec, FTS5) · Ollama · Transformers.js', en: 'Next.js 16 · React 19 · TypeScript · SQLite (Drizzle, sqlite-vec, FTS5) · Ollama · Transformers.js' } },
+      { label: { it: 'Stack', en: 'Stack' }, value: { it: 'Next.js 16 · React 19 · TypeScript · SQLite (Drizzle, sqlite-vec, FTS5) · Ollama · Transformers.js · Docker', en: 'Next.js 16 · React 19 · TypeScript · SQLite (Drizzle, sqlite-vec, FTS5) · Ollama · Transformers.js · Docker' } },
       { label: { it: 'Scala', en: 'Scale' }, value: { it: '783 documenti da 9 corsi · 2.321 chunk · ~3–6 s per risposta su una RTX 4080 Super', en: '783 documents from 9 courses · 2,321 chunks · ~3–6 s per answer on an RTX 4080 Super' } },
-      { label: { it: 'Stato', en: 'Status' }, value: { it: 'In sviluppo attivo, in uso quotidiano · codice pubblico su GitHub', en: 'In active development and daily use · public code on GitHub' } },
+      { label: { it: 'Qualità e stato', en: 'Quality and status' }, value: { it: 'Oltre 80 file di test con node:test · set di eval dei prompt · in uso quotidiano, codice pubblico su GitHub', en: 'Over 80 test files with node:test · prompt eval sets · in daily use, public code on GitHub' } },
     ],
     problem: {
       it: 'I corsi online sono pieni di materiale ma poveri di interazione: ore di video e centinaia di file, e quando hai un dubbio ritrovare dove se ne parlava è lento. Gli assistenti AI generalisti non sanno cosa dice il tuo corso, inventano dettagli e chiedono di caricare il materiale su servizi esterni. Volevo un compagno di studio che risponda solo in base al corso citando le fonti, mi faccia ragionare invece di darmi la soluzione e programmi il ripasso, senza abbonamenti né API a consumo.',
@@ -474,10 +476,10 @@ export const caseStudies = [
         },
       },
       {
-        title: { it: 'Ingestion ripetibile', en: 'Repeatable ingestion' },
+        title: { it: 'Libreria e import guidato', en: 'Library and guided import' },
         text: {
-          it: 'Ogni file ha un hash: rilanciare l’ingestion salta quelli invariati e sostituisce quelli modificati. I pochi video senza sottotitoli vengono trascritti da Whisper, su GPU quando c’è.',
-          en: 'Every file has a hash: rerunning ingestion skips unchanged files and replaces modified ones. The few videos without subtitles are transcribed by Whisper, on the GPU when available.',
+          it: 'L’app analizza in sola lettura la cartella dei corsi, distingue corsi e specializzazioni e mostra un’anteprima modificabile prima di scrivere sul database. L’import gira in background; grazie a un hash per file salta quelli invariati, e i pochi video senza sottotitoli vengono trascritti da Whisper.',
+          en: 'The app scans the courses folder read-only, tells courses apart from specialisations and shows an editable preview before writing to the database. Import runs in the background; a per-file hash lets it skip unchanged files, and the few videos without subtitles are transcribed by Whisper.',
         },
       },
     ],
@@ -538,6 +540,13 @@ export const caseStudies = [
         },
       },
       {
+        title: { it: 'Prompt misurati, non a sensazione', en: 'Prompts measured, not guessed' },
+        text: {
+          it: 'Ogni modifica a un prompt si rigira su un set di casi fissi con verdetti rivisti a mano: accordo esatto, accordo entro un livello e matrice di confusione, salvati per versione del prompt. Così il giudice delle flashcard è passato da un voto 0–5 a un verdetto che elenca cosa la domanda richiede e cosa manca nella risposta.',
+          en: 'Every prompt change is rerun on a fixed set of cases with hand-reviewed verdicts: exact agreement, agreement within one level and a confusion matrix, saved per prompt version. That is how the flashcard judge moved from a 0–5 score to a verdict that lists what the question requires and what the answer is missing.',
+        },
+      },
+      {
         title: { it: 'Un’app locale va protetta lo stesso', en: 'A local app still needs protecting' },
         text: {
           it: 'Un sito malevolo può puntare il proprio dominio a 127.0.0.1 o inviare richieste cross-site a un server locale. Le API accettano solo host locali e scritture JSON, che obbligano il browser a un controllo CORS preventivo; i percorsi restano nella home e il server video serve solo file indicizzati.',
@@ -546,11 +555,146 @@ export const caseStudies = [
       },
     ],
     limits: {
-      it: 'Al 7 ottobre 2026 StudyBuddy v2 è in sviluppo attivo: è un’app single-user e solo locale per scelta, senza autenticazione né sincronizzazione, e non ha ancora test automatici né una valutazione misurata della qualità del retrieval. Le illustrazioni SVG di un modello da 12B sono semplici e a volte imprecise, e le opzioni dei quiz possono riprendere frasi in inglese del materiale. Il codice è pubblico con licenza MIT, tranne il motore delle mappe, che resta sotto PolyForm Noncommercial.',
-      en: 'As of 7 October 2026, StudyBuddy v2 is in active development: it is a single-user, local-only app by design, with no authentication or sync, and it has no automated tests or measured retrieval-quality evaluation yet. SVG illustrations from a 12B model are simple and sometimes inaccurate, and quiz options can reuse English sentences from the material. The code is public under the MIT licence, except for the concept-map engine, which remains under PolyForm Noncommercial.',
+      it: 'Al 26 ottobre 2026 StudyBuddy v2 è in uso quotidiano e cresce per fasi, ciascuna con spec, eval e report. È un’app single-user e solo locale per scelta, senza autenticazione né sincronizzazione. La logica è coperta da test che girano senza Ollama e i prompt principali hanno un set di valutazione, ma la qualità del retrieval non è ancora misurata. Le illustrazioni SVG di un modello da 12B sono semplici e a volte imprecise, e le opzioni dei quiz possono riprendere frasi in inglese del materiale. Il codice è pubblico con licenza MIT, tranne il motore delle mappe, che resta sotto PolyForm Noncommercial.',
+      en: 'As of 26 October 2026, StudyBuddy v2 is in daily use and grows in phases, each with a spec, evals and a report. It is a single-user, local-only app by design, with no authentication or sync. The logic is covered by tests that run without Ollama and the main prompts have an evaluation set, but retrieval quality is not measured yet. SVG illustrations from a 12B model are simple and sometimes inaccurate, and quiz options can reuse English sentences from the material. The code is public under the MIT licence, except for the concept-map engine, which remains under PolyForm Noncommercial.',
     },
     links: {
       repo: 'https://github.com/Federico-Ordonselli/studybuddy-v2',
+    },
+  },
+  {
+    slug: 'covershift',
+    title: 'Covershift',
+    art: 'covershift',
+    eyebrow: { it: 'FULL STACK · NESTJS + REACT + SUPABASE · FASE 2', en: 'FULL STACK · NESTJS + REACT + SUPABASE · PHASE 2' },
+    headline: { it: 'Scambi di turno, protetti fino al database.', en: 'Shift swaps, secured down to the database.' },
+    intro: {
+      it: 'Covershift è una piattaforma multi-tenant per pianificare i turni di team operativi, come la sicurezza aeroportuale, il retail o la sanità. I manager compongono la settimana, il personale si scambia i turni e un manager approva, con una regola che non si aggira: nessuno lavora una postazione senza una certificazione valida fino alla fine del turno. L’ho impostato come un prodotto B2B, per fasi con report e decisioni architetturali scritte, in un monorepo TypeScript sviluppato con Claude Code.',
+      en: 'Covershift is a multi-tenant platform for scheduling shifts in operational teams such as airport security, retail or healthcare. Managers build the week, staff swap shifts and a manager approves, under one rule that cannot be bypassed: nobody works a position without a certification valid until the shift ends. I set it up as a B2B product, in phases with written reports and architecture decisions, in a TypeScript monorepo developed with Claude Code.',
+    },
+    facts: [
+      { label: { it: 'Ruolo', en: 'Role' }, value: { it: 'Progetto personale AI-assisted: architettura, revisione, test e decisioni documentate', en: 'Personal AI-assisted project: architecture, review, testing and documented decisions' } },
+      { label: { it: 'Stack', en: 'Stack' }, value: { it: 'NestJS · React 19 · TypeScript · Supabase (Postgres + Auth) · TypeORM · Zod · TanStack Query', en: 'NestJS · React 19 · TypeScript · Supabase (Postgres + Auth) · TypeORM · Zod · TanStack Query' } },
+      { label: { it: 'Qualità', en: 'Quality' }, value: { it: 'Oltre 380 test · 14 e2e Playwright con axe (WCAG 2.1 AA) · CodeQL, gitleaks, Trivy', en: 'Over 380 tests · 14 Playwright e2e tests with axe (WCAG 2.1 AA) · CodeQL, gitleaks, Trivy' } },
+      { label: { it: 'Stato', en: 'Status' }, value: { it: 'Fasi 1 e 2 completate · deploy su AWS predisposto · codice su GitHub', en: 'Phases 1 and 2 complete · AWS deployment prepared · code on GitHub' } },
+    ],
+    problem: {
+      it: 'Nei team operativi i turni si scambiano di continuo, e ogni scambio deve rispettare regole precise: chi prende un turno deve essere abilitato alla postazione e avere una certificazione che non scade prima della fine. L’obiettivo era rendere lo scambio semplice per il personale e verificabile per il manager, in un’applicazione dove i dati di un’organizzazione non possano finire in un’altra, nemmeno per un bug del backend.',
+      en: 'In operational teams shifts change hands all the time, and every swap must follow precise rules: whoever takes a shift must be cleared for the position and hold a certification that does not expire before it ends. The goal was to make swapping easy for staff and verifiable for managers, in an application where one organisation’s data cannot leak into another, not even through a backend bug.',
+    },
+    solution: {
+      it: 'Un monorepo pnpm con tre pacchetti: l’API NestJS, la web app React e i contratti Zod condivisi. Supabase fornisce Postgres e l’autenticazione, ma tutti i dati passano dall’API: verifica il token e poi esegue ogni richiesta in una transazione che impersona l’utente, così sono le policy Row Level Security di Postgres a decidere quali righe esistono per lui. Ogni regola di dominio ha un errore leggibile nel servizio e un vincolo nel database che non si può saltare.',
+      en: 'A pnpm monorepo with three packages: the NestJS API, the React web app and shared Zod contracts. Supabase provides Postgres and authentication, but all data goes through the API: it verifies the token, then runs every request in a transaction that impersonates the user, so Postgres Row Level Security policies decide which rows exist for them. Every domain rule has a readable error in the service and a database constraint that cannot be skipped.',
+    },
+    features: [
+      {
+        title: { it: 'Calendario settimanale', en: 'Weekly schedule' },
+        text: {
+          it: 'Settimana da lunedì a lunedì nel fuso orario dell’organizzazione, corretta anche al cambio dell’ora legale. L’organizzazione sta nell’URL ed è verificata contro il profilo dell’utente; si passa da “tutti” a “i miei turni” con un clic.',
+          en: 'A Monday-to-Monday week in the organisation’s time zone, correct across daylight saving changes. The organisation lives in the URL and is checked against the user’s profile; one click switches between everyone and my shifts.',
+        },
+      },
+      {
+        title: { it: 'Turni con controllo di idoneità', en: 'Shifts with eligibility checks' },
+        text: {
+          it: 'Il manager assegna un turno solo a chi è membro attivo, è abilitato alla postazione, ha una certificazione valida fino a fine turno e non ha sovrapposizioni. Un’eccezione è possibile solo con una motivazione di 5–500 caratteri, salvata sul turno.',
+          en: 'A manager can only assign a shift to an active member who is cleared for the position, holds a certification valid until the shift ends and has no overlaps. An override needs a 5–500 character reason, stored on the shift.',
+        },
+      },
+      {
+        title: { it: 'Scambi tra colleghi', en: 'Swaps between colleagues' },
+        text: {
+          it: 'Offerta diretta a un collega o aperta a tutti, con accetta, rifiuta e annulla e una casella delle offerte ricevute. Lo stato dello scambio segue una macchina a stati che vive in un trigger del database.',
+          en: 'A direct offer to a colleague or an open one, with accept, decline and cancel, and an inbox of received offers. The swap follows a state machine that lives in a database trigger.',
+        },
+      },
+      {
+        title: { it: 'Approvazioni del manager', en: 'Manager approvals' },
+        text: {
+          it: 'Il manager approva o rifiuta gli scambi accettati, ma non quelli di cui fa parte. Se un ruolo viene revocato mentre la pagina è aperta, il primo 403 ricarica il profilo e la pagina diventa di sola lettura, mostrando il motivo restituito dall’API.',
+          en: 'The manager approves or rejects accepted swaps, but not ones they are part of. If a role is revoked while the page is open, the first 403 reloads the profile and the page turns read-only, showing the reason returned by the API.',
+        },
+      },
+      {
+        title: { it: 'API documentata', en: 'Documented API' },
+        text: {
+          it: 'OpenAPI su /docs generata dagli stessi schemi della validazione, paginazione keyset corretta anche con timestamp identici ed errori RFC 9457 con un codice stabile su ogni percorso, comprese route sconosciute e body troppo grandi (413 invece di 500).',
+          en: 'OpenAPI at /docs generated from the same schemas used for validation, keyset pagination that stays correct with identical timestamps, and RFC 9457 errors with a stable code on every path, including unknown routes and oversized bodies (413 rather than 500).',
+        },
+      },
+      {
+        title: { it: 'Test sotto la policy reale', en: 'Tests under the real policy' },
+        text: {
+          it: 'Componenti testati con mock MSW validati dagli stessi schemi dell’API. In Playwright uno scambio completo fra tre utenti, dall’offerta alla riassegnazione, con controllo axe a ogni esecuzione e una Content Security Policy restrittiva attiva anche nei test, che falliscono a ogni violazione.',
+          en: 'Components tested with MSW mocks validated by the API’s own schemas. In Playwright, a full swap between three users, from offer to reassignment, with an axe check on every run and a strict Content Security Policy active in tests too, which fail on any violation.',
+        },
+      },
+    ],
+    shotLayout: 'grid',
+    screenshots: [
+      {
+        src: '/projects/covershift/schedule.png', width: 1280, height: 720,
+        alt: { it: 'Calendario settimanale del manager per l’organizzazione Lakeside International Airport: Security, con turni come Queue host, Hold baggage screening e Gate screening, ciascuno con orario e persona assegnata.', en: 'The manager’s weekly schedule for the Lakeside International Airport: Security organisation, with shifts such as Queue host, Hold baggage screening and Gate screening, each with its time and assignee.' },
+        caption: { it: 'La settimana vista dal manager', en: 'The week, as the manager sees it' },
+      },
+      {
+        src: '/projects/covershift/swaps.png', width: 1280, height: 720,
+        alt: { it: 'Offerte ricevute da un membro dello staff: Sam Carter propone il turno Gate screening di venerdì 16:00–00:00, con una nota e i pulsanti Accept e Decline.', en: 'Offers received by a staff member: Sam Carter offers the Friday 16:00–00:00 Gate screening shift, with a note and Accept and Decline buttons.' },
+        caption: { it: 'Offerta di scambio, lato collega', en: 'Swap offer, as the colleague' },
+      },
+      {
+        src: '/projects/covershift/approvals.png', width: 1280, height: 720,
+        alt: { it: 'Pagina Approvals del manager: lo stesso scambio, accettato e in attesa di approvazione, con i pulsanti Approve e Reject.', en: 'The manager’s Approvals page: the same swap, accepted and waiting for approval, with Approve and Reject buttons.' },
+        caption: { it: 'Approvazione del manager', en: 'Manager approval' },
+      },
+    ],
+    screenshotNote: {
+      it: 'Schermate reali della web app, ottobre 2026, generate da uno script Playwright sui dati demo del seed e sotto la stessa CSP dei test end-to-end. Nomi e organizzazione sono fittizi.',
+      en: 'Real screenshots of the web app, October 2026, generated by a Playwright script from the seeded demo data and under the same CSP as the end-to-end tests. Names and organisation are fictitious.',
+    },
+    decisions: [
+      {
+        title: { it: 'Il database è l’ultima difesa', en: 'The database is the last line of defence' },
+        text: {
+          it: 'NestJS verifica il token di Supabase tramite JWKS, senza segreti condivisi, e apre una transazione con il ruolo e i claim dell’utente. L’API si connette con un ruolo senza privilegi propri: una query fuori da quella transazione fallisce invece di far trapelare dati. Disattivando RLS, i test corrispondenti diventano rossi.',
+          en: 'NestJS verifies the Supabase token via JWKS, with no shared secret, and opens a transaction with the user’s role and claims. The API connects as a role with no privileges of its own: a query outside that transaction fails instead of leaking data. Turning RLS off makes the matching tests fail.',
+        },
+      },
+      {
+        title: { it: 'Regola spiegata, vincolo inaggirabile', en: 'An explained rule, an unskippable constraint' },
+        text: {
+          it: 'Il servizio restituisce errori comprensibili, come una certificazione scaduta o una sovrapposizione. Il database impone comunque le stesse regole: foreign key composite per isolare i tenant, un exclusion constraint contro i doppi turni e la macchina a stati degli scambi in un trigger.',
+          en: 'The service returns readable errors, such as an expired certification or an overlap. The database enforces the same rules anyway: composite foreign keys to isolate tenants, an exclusion constraint against double-booking and the swap state machine in a trigger.',
+        },
+      },
+      {
+        title: { it: 'Un contratto, tre usi', en: 'One contract, three uses' },
+        text: {
+          it: 'Gli schemi Zod condivisi producono validazione, documentazione OpenAPI e tipi del frontend. Il file openapi.json è nel repository e un test fa fallire la CI se il codice cambia senza aggiornarlo.',
+          en: 'The shared Zod schemas produce validation, OpenAPI documentation and frontend types. The openapi.json file is committed, and a test fails CI if the code changes without updating it.',
+        },
+      },
+      {
+        title: { it: 'Non rivelare nulla', en: 'Reveal nothing' },
+        text: {
+          it: 'Una risorsa di un’altra organizzazione risponde 404, come una che non esiste: dalla risposta non si capisce se c’è. Il parametro di ritorno dopo il login accetta solo percorsi interni, e una regola ESLint su misura blocca la build se una query SQL viene costruita concatenando stringhe.',
+          en: 'A resource from another organisation returns 404, just like one that does not exist: the response does not reveal whether it is there. The post-login return parameter only accepts same-origin paths, and a custom ESLint rule fails the build if an SQL query is built by string concatenation.',
+        },
+      },
+      {
+        title: { it: 'Un solo cancello per la CI', en: 'A single CI gate' },
+        text: {
+          it: 'Un unico check obbligatorio dipende da tutti i job e fallisce anche se uno viene saltato o annullato. Intorno: CodeQL, gitleaks sull’intera storia, audit delle dipendenze, Trivy sull’immagine Docker, lint del PL/pgSQL e Actions fissate per SHA. Le scelte importanti sono registrate in ADR e report di fase.',
+          en: 'A single required check depends on every job and fails even if one is skipped or cancelled. Around it: CodeQL, gitleaks over the full history, dependency audits, Trivy on the Docker image, PL/pgSQL linting and SHA-pinned Actions. Major choices are recorded in ADRs and phase reports.',
+        },
+      },
+    ],
+    limits: {
+      it: 'Covershift è un progetto personale impostato come prodotto, non un servizio in uso: non ha clienti né dati reali, e gli account arrivano dal seed perché la registrazione pubblica è disattivata. Al 26 ottobre 2026 sono complete le fasi 1 (API) e 2 (web app); il deploy su AWS ECS Fargate è predisposto con Docker e Terraform ma non ancora attivo, quindi non c’è una demo online. L’interfaccia è in inglese.',
+      en: 'Covershift is a personal project set up as a product, not a service in use: it has no customers or real data, and accounts come from the seed because public sign-up is disabled. As of 26 October 2026, phases 1 (API) and 2 (web app) are complete; deployment to AWS ECS Fargate is prepared with Docker and Terraform but not yet live, so there is no online demo. The interface is in English.',
+    },
+    links: {
+      repo: 'https://github.com/Federico-Ordonselli/covershift',
     },
   },
 ];

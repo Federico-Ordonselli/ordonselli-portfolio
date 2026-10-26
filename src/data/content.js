@@ -86,10 +86,10 @@ const RAW = {
       {
         title: "Runebog GM",
         desc: tr(
-          "Applicazione per organizzare campagne di giochi di ruolo: mappe navigabili, schede mostro D&D, generazione di dungeon e gestione degli incontri. Include salvataggio cloud e una vista del tavolo condivisibile con i giocatori.",
-          "An app for organising tabletop RPG campaigns: navigable maps, D&D monster stat blocks, dungeon generation and encounter management. Includes cloud saves and a table view that can be shared with players."
+          "Applicazione per organizzare campagne di giochi di ruolo: mappe navigabili, schede mostro D&D, generazione di dungeon e gestione degli incontri. Include salvataggio cloud, una vista del tavolo condivisibile con i giocatori, uso offline come PWA e un’app portable per Windows.",
+          "An app for organising tabletop RPG campaigns: navigable maps, D&D monster stat blocks, dungeon generation and encounter management. Includes cloud saves, a table view that can be shared with players, offline use as a PWA and a portable Windows app."
         ),
-        tags: ["Next.js", "JavaScript", "TypeScript", "PostgreSQL", "Auth.js"],
+        tags: ["Next.js", "JavaScript", "TypeScript", "PostgreSQL", "Auth.js", "Electron"],
         color: "#43B89C",
         link: "https://runebog.app",
         caseStudy: "/projects/runebog-gm",
@@ -106,6 +106,17 @@ const RAW = {
         caseStudy: "/projects/matchday",
       },
       {
+        title: "Covershift",
+        desc: tr(
+          "Piattaforma multi-tenant per pianificare i turni e scambiarli tra colleghi, con approvazione del manager e controllo delle certificazioni. Monorepo TypeScript con API NestJS, web app React e contratti Zod condivisi; l’accesso ai dati è affidato alla Row Level Security di Postgres su Supabase. Oltre 380 test, con e2e Playwright e controlli di accessibilità.",
+          "A multi-tenant platform for scheduling shifts and swapping them between colleagues, with manager approval and certification checks. A TypeScript monorepo with a NestJS API, a React web app and shared Zod contracts; data access is enforced by Postgres Row Level Security on Supabase. Over 380 tests, including Playwright e2e and accessibility checks."
+        ),
+        tags: ["NestJS", "React", "TypeScript", "Supabase", "PostgreSQL", "Playwright"],
+        color: "#43B89C",
+        link: "https://github.com/Federico-Ordonselli/covershift",
+        caseStudy: "/projects/covershift",
+      },
+      {
         title: "Vagabondando",
         desc: tr(
           "Sito bilingue di diari di viaggio per un’accompagnatrice di trekking, online su vagabondando.site. La cliente scrive i racconti in Sanity Studio e le pagine si aggiornano entro un minuto; il form contatti è protetto da BotID, honeypot e rate limit su Redis. La prima versione gestiva prenotazioni con Stripe e PostgreSQL.",
@@ -119,23 +130,33 @@ const RAW = {
       {
         title: "qrinventory",
         desc: tr(
-          "API per gestire oggetti e posizioni di un inventario, con codici QR e fogli di etichette PDF. Backend FastAPI e SQLModel, con Docker, test automatici e configurazione del deploy su Azure tramite Terraform e GitHub Actions.",
-          "An API for managing inventory items and locations, with QR codes and printable PDF label sheets. Built with FastAPI and SQLModel, with Docker, automated tests and Azure deployment configuration using Terraform and GitHub Actions."
+          "Inventario self-hosted di oggetti fisici con QR code: ogni oggetto e contenitore ha un’etichetta che, inquadrata dal telefono, apre la sua scheda. API FastAPI e SQLModel su SQLite, contenitori annidati senza cicli, fogli di etichette PDF e scanner dalla fotocamera. Gira in Docker sul PC di casa, in HTTPS con Caddy e Let’s Encrypt, senza aprire porte del router.",
+          "A self-hosted inventory of physical objects with QR codes: every item and container has a label that opens its page when scanned with a phone. A FastAPI and SQLModel API on SQLite, nested containers with cycle protection, PDF label sheets and a camera scanner. It runs in Docker on a home PC, over HTTPS with Caddy and Let’s Encrypt, without opening any router ports."
         ),
-        tags: ["FastAPI", "SQLModel", "Docker", "Azure", "Terraform"],
+        tags: ["FastAPI", "SQLModel", "SQLite", "Docker", "Caddy", "pytest"],
         color: "#6C63FF",
         link: "#",
       },
       {
         title: "StudyBuddy v2",
         desc: tr(
-          "Tutor di studio AI che gira tutto in locale su un corso online scaricato. Ricerca ibrida (sqlite-vec + BM25, fusione RRF, cross-encoder su GPU), tutor socratico che cita il minuto esatto del video, quiz valutati da un LLM, ripasso SM-2 e mappe concettuali esplorabili. In sviluppo attivo.",
-          "A local-first AI study tutor built on a downloaded online course. Hybrid retrieval (sqlite-vec + BM25, RRF fusion, GPU cross-encoder), a Socratic tutor that cites the exact minute of the video, LLM-graded quizzes, SM-2 review and explorable concept maps. In active development."
+          "Tutor di studio AI che gira tutto in locale: ogni corso online scaricato diventa un tutor socratico che cita il minuto esatto del video. Ricerca ibrida (sqlite-vec + BM25, fusione RRF, cross-encoder su GPU), quiz valutati da un LLM, ripasso SM-2, mappe concettuali esplorabili e set di eval per misurare i prompt. In uso quotidiano.",
+          "A local-first AI study tutor: every downloaded online course becomes a Socratic tutor that cites the exact minute of the video. Hybrid retrieval (sqlite-vec + BM25, RRF fusion, GPU cross-encoder), LLM-graded quizzes, SM-2 review, explorable concept maps and eval sets to measure prompts. In daily use."
         ),
         tags: ["Next.js", "TypeScript", "RAG", "SQLite", "Ollama", "Transformers.js"],
         color: "#FF6584",
         link: "https://github.com/Federico-Ordonselli/studybuddy-v2",
         caseStudy: "/projects/studybuddy",
+      },
+      {
+        title: "ordonselli.info",
+        desc: tr(
+          "Questo sito: portfolio bilingue in Next.js 16 e React 19, migrato da una SPA Vite mantenendo i vecchi URL. Lingua salvata in un cookie e letta dal server per evitare il lampo di contenuto, Content Security Policy con nonce per richiesta, demo interattiva di interfacce in tre stili e test Playwright su desktop e mobile.",
+          "This site: a bilingual portfolio in Next.js 16 and React 19, migrated from a Vite SPA while keeping the old URLs. The language is stored in a cookie and read on the server to avoid a content flash, with a per-request nonce Content Security Policy, an interactive three-style interface demo and Playwright tests on desktop and mobile."
+        ),
+        tags: ["Next.js", "React", "CSP", "Playwright", "Vercel"],
+        color: "#6C63FF",
+        link: "https://github.com/Federico-Ordonselli/ordonselli-portfolio",
       },
     ],
     cyber: [
@@ -148,6 +169,36 @@ const RAW = {
         tags: ["Python", "Streamlit", "Ollama", "ChromaDB", "Whisper"],
         color: "#F7971E",
         link: "https://github.com/Federico-Ordonselli/studybuddy",
+      },
+      {
+        title: "Full Studio",
+        desc: tr(
+          "Lettore di lezioni audio con codice sincronizzato: una voce sintetica spiega quattro guide full stack mentre a schermo compaiono gli esempi, con le righe di cui si parla evidenziate. Oltre 10 ore di audio generate da una pipeline Python idempotente con validatore, e un player React senza pause tra i segmenti. Sviluppato orchestrando Claude Code e Codex, con revisione e test miei.",
+          "An audio lesson player with synchronised code: a synthetic voice explains four full-stack guides while the examples appear on screen, with the lines being discussed highlighted. Over 10 hours of audio generated by an idempotent Python pipeline with a validator, and a React player with no gaps between segments. Built by orchestrating Claude Code and Codex, with my own review and testing."
+        ),
+        tags: ["React", "TypeScript", "Vite", "Shiki", "Python", "TTS", "Playwright"],
+        color: "#43B89C",
+        link: "#",
+      },
+      {
+        title: "Diario KH",
+        desc: tr(
+          "App offline per completare al 100% Kingdom Hearts Final Mix: checklist di 794 obiettivi con ricerca e filtri, inventario dei materiali e un pianificatore che risolve le dipendenze tra ricette. Riscritta da React a Flutter mantenendo compatibili i backup, con salvataggi atomici, undo e import dai salvataggi di gioco con anteprima delle differenze.",
+          "An offline app for completing Kingdom Hearts Final Mix to 100%: a checklist of 794 goals with search and filters, a materials inventory and a planner that resolves dependencies between recipes. Rewritten from React to Flutter while keeping backups compatible, with atomic saves, undo and save-file imports with a diff preview."
+        ),
+        tags: ["Flutter", "Dart", "Material 3", "React"],
+        color: "#6C63FF",
+        link: "#",
+      },
+      {
+        title: "PokéHome Organizer",
+        desc: tr(
+          "App desktop per organizzare la Living Dex di Pokémon HOME box per box, come nel gioco, con dove trovare ogni Pokémon grazie a PokéAPI. Porting di un foglio Google Sheets della community: dataset estratto da Excel con Python, cache locale delle risposte, salvataggio su file e pacchetti AppImage e .deb.",
+          "A desktop app for organising a Pokémon HOME Living Dex box by box, just like in the game, showing where to find each Pokémon via PokéAPI. A port of a community Google Sheets tracker: a dataset extracted from Excel with Python, a local response cache, file-based saves and AppImage and .deb packages."
+        ),
+        tags: ["Tauri", "React", "TypeScript", "Tailwind CSS", "PokéAPI"],
+        color: "#FF6584",
+        link: "#",
       },
       {
         title: "D&D Transcription App",
@@ -245,24 +296,25 @@ const RAW = {
       { name: tr("Meta Front-End Developer (in corso)", "Meta Front-End Developer (in progress)"), color: "#F7971E" },
     ],
 
-    // Stack allineato al CV. I nomi delle tecnologie non passano da tr():
+    // Stack allineato al CV e alle overview dei progetti di ottobre 2026
+    // (Covershift, Full Studio, Diario KH). I nomi delle tecnologie non passano da tr():
     // "PostgreSQL" è "PostgreSQL" in entrambe le lingue, solo le etichette
     // dei gruppi sono tradotte.
     skills: [
       {
         label: tr("Linguaggi e frontend", "Languages & frontend"),
         color: "#6C63FF",
-        items: ["TypeScript", "JavaScript", "React", "Next.js", "HTML", "CSS", "CSS Modules", "Tailwind CSS", "Python"],
+        items: ["TypeScript", "JavaScript", "React", "Next.js", "Angular", "TanStack Query", "HTML", "CSS", "CSS Modules", "Tailwind CSS", "Python", "Flutter"],
       },
       {
         label: tr("Backend e dati", "Backend & data"),
         color: "#43B89C",
-        items: ["Node.js", "Express", "FastAPI", "PostgreSQL", "MySQL", "Drizzle ORM", "SQLite", "REST API", "Zod"],
+        items: ["Node.js", "Express", "NestJS", "FastAPI", "PostgreSQL", "Row Level Security", "MySQL", "Drizzle ORM", "TypeORM", "SQLite", "REST API", "OpenAPI", "Zod"],
       },
       {
         label: tr("Servizi e infrastruttura", "Services & infrastructure"),
         color: "#F7971E",
-        items: ["WordPress", "Stripe", "Sanity", "Auth.js", "Clerk", "Resend", "Vercel", "NeonDB", "Azure", "Terraform"],
+        items: ["WordPress", "Stripe", "Sanity", "Supabase", "Auth.js", "Clerk", "Resend", "Vercel", "NeonDB", "Azure", "Terraform", "Caddy"],
       },
       {
         label: tr("Sistemi e workflow", "Systems & workflow"),
@@ -272,7 +324,7 @@ const RAW = {
       {
         label: tr("Qualità e sicurezza", "Quality & security"),
         color: "#6C63FF",
-        items: ["Vitest", "React Testing Library", "Jest", "node:test", "CI/CD", tr("Accessibilità WCAG di base", "WCAG accessibility basics"), "OAuth", "XSS prevention"],
+        items: ["Vitest", "React Testing Library", "Jest", "node:test", "Playwright", "Cypress", "pytest", "CI/CD", tr("Accessibilità WCAG di base", "WCAG accessibility basics"), "OAuth", "XSS prevention", "Content Security Policy"],
       },
     ],
   },

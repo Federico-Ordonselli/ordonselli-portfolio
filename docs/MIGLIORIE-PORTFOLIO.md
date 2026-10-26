@@ -21,6 +21,10 @@ verificare le modifiche in locale; pubblicare solo su richiesta.
   v0.2.9 (29 settembre 2026).
   StudyBuddy v2 è aggiunto (7 ottobre 2026): `/projects/studybuddy`, scheda
   in `docs/SCHEDA-PROGETTO-STUDYBUDDY.md`; sostituisce la card Learning Vault.
+  Covershift è aggiunto (26 ottobre 2026): `/projects/covershift`, scheda in
+  `docs/SCHEDA-PROGETTO-COVERSHIFT.md`. Nella stessa data le schede sono state
+  allineate alle overview di progetto (Full Studio, Diario KH, PokéHome
+  Organizer e questo sito aggiunti come card; qrinventory ora self-hosted).
 - [ ] **StudyBuddy: video demo e valutazione del retrieval.** Un video muto di
   30–60 s in cima alla case study (domanda → citazione → video al minuto giusto
   → ingresso in una bolla), dichiarando se è velocizzato. Poi, quando esiste,

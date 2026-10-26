@@ -91,8 +91,9 @@ test('language persists between routes and after reload', async ({ page }, testI
 test('project anchors, technology routes, old hash URLs and missing pages work', async ({ page }) => {
   await page.goto('/');
   await page.locator('.featured-project').first().click();
-  await expect(page).toHaveURL(/\/projects#runebog-gm$/);
-  await expect(page.locator('#runebog-gm')).toBeInViewport();
+  await expect(page).toHaveURL(/\/projects\/runebog-gm$/);
+  await page.goto('/projects#covershift');
+  await expect(page.locator('#covershift')).toBeInViewport();
   await page.goto('/');
   await page.locator('.expertise-row').first().click();
   await expect(page).toHaveURL(/\/competenze\/frontend$/);
@@ -132,6 +133,24 @@ test('Matchday case study is linked from the homepage and project card', async (
   await expect(page).toHaveURL(/\/projects\/matchday$/);
   const missing = await page.goto('/projects/missing');
   expect(missing.status()).toBe(404);
+  expect(errors).toEqual([]);
+});
+
+test('Covershift case study shows its screenshots and links to the code', async ({ page }) => {
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/projects');
+  await page.locator('#covershift').click();
+  await expect(page).toHaveURL(/\/projects\/covershift$/);
+  await expect(page.getByRole('heading', { level: 1 })).toContainText('Covershift');
+  await expect(page.getByRole('link', { name: /Source code on GitHub/ })).toHaveAttribute('href', 'https://github.com/Federico-Ordonselli/covershift');
+  await expect(page.getByRole('link', { name: /Open the demo/ })).toHaveCount(0);
+  const shots = page.locator('.case-shots img');
+  await expect(shots).toHaveCount(3);
+  await shots.last().scrollIntoViewIfNeeded();
+  await shots.evaluateAll(images => Promise.all(images.map(img => img.decode())));
+  expect(await shots.evaluateAll(images => images.every(img => img.naturalWidth > 0))).toBe(true);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   expect(errors).toEqual([]);
 });
 
