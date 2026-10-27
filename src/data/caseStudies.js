@@ -9,7 +9,238 @@
 // numeri verificati sul repository studybuddy-v2 al 7 ottobre 2026 e test ed eval
 // aggiornati al 26 ottobre. Covershift segue l'overview di progetto del 26 ottobre
 // 2026 (docs/SCHEDA-PROGETTO-COVERSHIFT.md), verificata su README e report di fase 2.
+// Aerides: overviews/OVERVIEW_aerides.md (27 ottobre 2026).
 export const caseStudies = [
+  {
+  "slug": "aerides",
+  "title": "Aerides",
+  "art": "aerides",
+  "eyebrow": {
+    "it": "FULL STACK · JAVA + ANGULAR",
+    "en": "FULL STACK · JAVA + ANGULAR"
+  },
+  "headline": {
+    "it": "Un posto per ogni ruolo. Nessuna doppia prenotazione.",
+    "en": "A seat for every role. No double booking."
+  },
+  "intro": {
+    "it": "Aerides è una web app multi-tenant per organizzare sessioni di gioco: eventi con posti per ruolo, iscrizioni e lista d’attesa FIFO. Quando qualcuno rinuncia, il primo in coda viene promosso nella stessa transazione, vede l’aggiornamento in tempo reale e riceve un’email. Java e Spring Boot sul backend, Angular sul frontend, interfaccia in italiano e inglese.",
+    "en": "Aerides is a multi-tenant web app for organising gaming sessions: events with role-based slots, sign-ups and a FIFO waitlist. When someone withdraws, the first person waiting is promoted in the same transaction, sees the update live and receives an email. Java and Spring Boot on the backend, Angular on the frontend, with an Italian and English UI."
+  },
+  "facts": [
+    {
+      "label": {
+        "it": "Ambito",
+        "en": "Scope"
+      },
+      "value": {
+        "it": "Gruppi di gioco · prenotazioni di risorse · ruoli per gruppo",
+        "en": "Gaming groups · resource booking · per-group roles"
+      }
+    },
+    {
+      "label": {
+        "it": "Stack",
+        "en": "Stack"
+      },
+      "value": {
+        "it": "Java 21 · Spring Boot 4.1 · Angular 22 · PostgreSQL 17 · Docker",
+        "en": "Java 21 · Spring Boot 4.1 · Angular 22 · PostgreSQL 17 · Docker"
+      }
+    },
+    {
+      "label": {
+        "it": "Qualità",
+        "en": "Quality"
+      },
+      "value": {
+        "it": "150 test unitari backend · 206 di integrazione · 91 Jest · 2 e2e Playwright",
+        "en": "150 backend unit tests · 206 integration tests · 91 Jest · 2 Playwright e2e tests"
+      }
+    },
+    {
+      "label": {
+        "it": "Stato",
+        "en": "Status"
+      },
+      "value": {
+        "it": "Demo su Render e Neon · CI GitHub Actions · Terraform Azure validato, non applicato",
+        "en": "Demo on Render and Neon · GitHub Actions CI · Azure Terraform validated, not applied"
+      }
+    }
+  ],
+  "problem": {
+    "it": "Organizzare una sessione significa far combaciare disponibilità, capienza e composizione del gruppo. Due iscrizioni simultanee non devono occupare lo stesso ultimo posto, le rinunce devono liberarlo per chi aspetta e ogni gruppo deve vedere solo i propri dati.",
+    "en": "Organising a session means matching availability, capacity and group composition. Two simultaneous sign-ups must not take the same last seat, withdrawals must release it to the next person waiting, and each group must see only its own data."
+  },
+  "solution": {
+    "it": "Un monolite modulare Spring Boot con API REST, PostgreSQL e frontend Angular standalone con signals. I gruppi hanno owner, officer e membri; gli eventi attraversano bozze, pubblicazione e completamento. Le regole di prenotazione sono protette da transazioni e lock nel database, mentre WebSocket, email e Discord partono dopo il commit.",
+    "en": "A modular Spring Boot monolith with REST APIs, PostgreSQL and an Angular standalone frontend with signals. Groups have owners, officers and members; events move through drafts, publishing and completion. Database transactions and locks protect booking rules, while WebSocket, email and Discord notifications run after commit."
+  },
+  "features": [
+    {
+      "title": {
+        "it": "Eventi e serie settimanali",
+        "en": "Events and weekly series"
+      },
+      "text": {
+        "it": "Calendario, filtri, bozze e serie nel fuso dell’organizzatore, corrette anche al cambio dell’ora.",
+        "en": "Calendar, filters, drafts and series in the organiser’s time zone, including daylight saving changes."
+      }
+    },
+    {
+      "title": {
+        "it": "Iscrizioni e approvazioni",
+        "en": "Sign-ups and approvals"
+      },
+      "text": {
+        "it": "Posti per Tank, Healer e DPS, lista FIFO e approvazione facoltativa da parte degli officer.",
+        "en": "Tank, Healer and DPS slots, a FIFO waitlist and optional officer approval."
+      }
+    },
+    {
+      "title": {
+        "it": "Aggiornamenti live",
+        "en": "Live updates"
+      },
+      "text": {
+        "it": "Una rinuncia promuove chi aspetta: pagina aggiornata via WebSocket, toast personale ed email nella lingua del destinatario.",
+        "en": "A withdrawal promotes the next person waiting: a WebSocket page update, personal toast and email in the recipient’s language."
+      }
+    },
+    {
+      "title": {
+        "it": "Gruppi, audit e statistiche",
+        "en": "Groups, audit and statistics"
+      },
+      "text": {
+        "it": "Inviti, permessi per gruppo, storico delle azioni, presenze e ruoli rimasti scoperti.",
+        "en": "Invitations, per-group permissions, action history, attendance and unfilled roles."
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/projects/aerides/21-event-calendar.webp",
+      "width": 1440,
+      "height": 1125,
+      "alt": {
+        "it": "Aerides: Calendario degli eventi.",
+        "en": "Aerides: Event calendar."
+      },
+      "caption": {
+        "it": "Calendario degli eventi",
+        "en": "Event calendar"
+      }
+    },
+    {
+      "src": "/projects/aerides/22-event-detail-full-raid-owner.webp",
+      "width": 1440,
+      "height": 900,
+      "alt": {
+        "it": "Aerides: Posti per ruolo e lista d’attesa.",
+        "en": "Aerides: Role-based slots and waitlist."
+      },
+      "caption": {
+        "it": "Posti per ruolo e lista d’attesa",
+        "en": "Role-based slots and waitlist"
+      }
+    },
+    {
+      "src": "/projects/aerides/71-live-promotion-toast.webp",
+      "width": 1440,
+      "height": 900,
+      "alt": {
+        "it": "Aerides: Promozione in tempo reale dopo una rinuncia.",
+        "en": "Aerides: Live promotion after a withdrawal."
+      },
+      "caption": {
+        "it": "Promozione in tempo reale dopo una rinuncia",
+        "en": "Live promotion after a withdrawal"
+      }
+    },
+    {
+      "src": "/projects/aerides/30-stats.webp",
+      "width": 1440,
+      "height": 917,
+      "alt": {
+        "it": "Aerides: Statistiche di partecipazione.",
+        "en": "Aerides: Attendance statistics."
+      },
+      "caption": {
+        "it": "Statistiche di partecipazione",
+        "en": "Attendance statistics"
+      }
+    },
+    {
+      "src": "/projects/aerides/62-mobile-event-detail.webp",
+      "width": 761,
+      "height": 1800,
+      "alt": {
+        "it": "Aerides: Dettaglio evento da telefono.",
+        "en": "Aerides: Event detail on mobile."
+      },
+      "caption": {
+        "it": "Dettaglio evento da telefono",
+        "en": "Event detail on mobile"
+      }
+    }
+  ],
+  "screenshotNote": {
+    "it": "Schermate del 27 ottobre 2026 dalla stack Docker locale con dati demo. Nomi e gruppi sono fittizi.",
+    "en": "Screenshots taken on 27 October 2026 from the local Docker stack with demo data. Names and groups are fictitious."
+  },
+  "decisions": [
+    {
+      "title": {
+        "it": "Concorrenza verificata sul database",
+        "en": "Concurrency tested against the database"
+      },
+      "text": {
+        "it": "Un lock pessimista sullo slot serializza le iscrizioni. Il test con 20 richieste parallele su 3 posti conferma esattamente 3 partecipanti. Rinuncia e promozione sono atomiche.",
+        "en": "A pessimistic slot lock serialises sign-ups. A test with 20 parallel requests for 3 seats confirms exactly 3 participants. Withdrawal and promotion are atomic."
+      }
+    },
+    {
+      "title": {
+        "it": "Notifiche dopo il commit",
+        "en": "Notifications after commit"
+      },
+      "text": {
+        "it": "Listener transazionali inviano aggiornamenti e notifiche solo dopo il commit: nessun utente riceve conferma di una modifica annullata.",
+        "en": "Transactional listeners send updates and notifications only after commit: no user is told about a rolled-back change."
+      }
+    },
+    {
+      "title": {
+        "it": "Isolamento e accessi revocabili",
+        "en": "Isolation and revocable access"
+      },
+      "text": {
+        "it": "Autorizzazione su ogni endpoint e lookup vincolati al gruppo. Le sottoscrizioni WebSocket verificano i permessi; la connessione viene chiusa alla revoca o alla scadenza del token.",
+        "en": "Every endpoint checks authorisation and lookups are scoped to the group. WebSocket subscriptions check permissions; connections close when access is revoked or tokens expire."
+      }
+    },
+    {
+      "title": {
+        "it": "Test con servizi reali",
+        "en": "Tests with real services"
+      },
+      "text": {
+        "it": "Testcontainers PostgreSQL, GreenMail e client STOMP verificano concorrenza, isolamento, email e realtime. Playwright prova due utenti e il flusso completo di promozione.",
+        "en": "Testcontainers PostgreSQL, GreenMail and STOMP clients verify concurrency, isolation, email and realtime behaviour. Playwright exercises two users and the full promotion flow."
+      }
+    }
+  ],
+  "limits": {
+    "it": "La demo gratuita su Render può richiedere circa 102 secondi per avviarsi; la pagina di accesso accompagna l’attesa. Nella demo le email sono registrate nei log. Broker STOMP e rate limit sono in memoria e pensati per una singola istanza. L’infrastruttura Azure in Terraform è validata in CI ma non applicata. Restano da completare modifica delle serie intere, tracciamento delle assenze e hardening della rete Azure.",
+    "en": "The free Render demo may take around 102 seconds to start; the entry page guides users through the wait. Demo emails are logged. The STOMP broker and rate limits are in memory and designed for a single instance. Azure infrastructure in Terraform is validated in CI but has not been applied. Whole-series editing, no-show tracking and Azure network hardening remain future work."
+  },
+  "links": {
+    "repo": "https://github.com/Federico-Ordonselli/aerides",
+    "demo": "https://federico-ordonselli.github.io/aerides/"
+  }
+},
   {
     slug: 'runebog-gm',
     title: 'Runebog GM',

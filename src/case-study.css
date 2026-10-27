@@ -51,3 +51,6 @@
   .case-shots .is-tall { max-width: 300px; }
   .case-limits { padding: 22px; }
 }
+
+.case-hero .art-aerides { height: auto; padding: 0; align-self: start; background: #f6f3fa; border: 1px solid #ded8e8; }
+.art-aerides img { display: block; width: 100%; height: auto; }

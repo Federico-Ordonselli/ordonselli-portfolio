@@ -84,6 +84,17 @@ const RAW = {
     ],
     web: [
       {
+        title: "Aerides",
+        desc: tr(
+          "Web app multi-tenant per organizzare sessioni di gioco: posti per ruolo, lista d’attesa FIFO e promozione automatica senza overbooking. API Java e Spring Boot, frontend Angular bilingue, aggiornamenti WebSocket, email e permessi per gruppo.",
+          "A multi-tenant web app for organising gaming sessions: role-based slots, a FIFO waitlist and automatic promotion without overbooking. Java and Spring Boot APIs, a bilingual Angular frontend, WebSocket updates, email and per-group permissions."
+        ),
+        tags: ["Java", "Spring Boot", "Angular", "PostgreSQL", "Docker", "Playwright"],
+        color: "#7560b5",
+        link: "https://federico-ordonselli.github.io/aerides/",
+        caseStudy: "/projects/aerides",
+      },
+      {
         title: "Runebog GM",
         desc: tr(
           "Applicazione per organizzare campagne di giochi di ruolo: mappe navigabili, schede mostro D&D, generazione di dungeon e gestione degli incontri. Include salvataggio cloud, una vista del tavolo condivisibile con i giocatori, uso offline come PWA e un’app portable per Windows.",

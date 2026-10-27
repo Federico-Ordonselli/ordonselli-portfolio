@@ -1,4 +1,5 @@
 export default function ProjectArt({ kind }) {
+  if (kind === 'aerides') return <div className="project-art art-aerides" aria-hidden="true"><img src="/projects/aerides/22-event-detail-full-raid-owner.webp" width="1440" height="900" alt="" decoding="async" /></div>;
   if (kind === 'runebog') return <div className="project-art art-runebog" aria-hidden="true">
     <div className="rune-top"><span>ᚱ RUNЕBOG</span><span>CAMPAIGN WORKSPACE</span></div>
     <div className="rune-map"><svg viewBox="0 0 400 200" fill="none"><path d="M-20 165 Q70 30 160 110 T420 50M-20 190 Q85 60 170 140 T420 80M-20 130 Q80 0 160 80 T420 20" stroke="#b7c6a1" opacity=".28" strokeWidth="2"/><path d="M65 135 L155 70 L250 110 L335 40" stroke="#cee4a5" strokeWidth="2" strokeDasharray="4 7"/>{[[65,135],[155,70],[250,110],[335,40]].map(([x,y],i) => <g key={x}><circle cx={x} cy={y} r="14" fill="#263f36" stroke="#cce1a9"/><text x={x} y={y+4} fill="#e3eccd" textAnchor="middle" fontSize="11">{i+1}</text></g>)}</svg><span className="map-label">The quiet forest</span><div className="map-tool">＋<br />−</div></div>
