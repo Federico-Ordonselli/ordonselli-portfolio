@@ -22,6 +22,7 @@ export default function CaseStudyPage({ slug }) {
           {demo && <a className="cta cta-dark" href={demo} target="_blank" rel="noopener noreferrer">{en ? 'Open the demo' : 'Apri la demo'} ↗</a>}
           {repo && <a className={demo ? 'text-link' : 'cta cta-dark'} href={repo} target="_blank" rel="noopener noreferrer">{en ? 'Source code on' : 'Codice su'} {repo.includes('github.com') ? 'GitHub' : 'GitLab'} ↗</a>}
         </div>
+        {demo && item.demoNote && <p className="case-note">{item.demoNote[lang]}</p>}
       </div>
       <ProjectArt kind={item.art} />
     </header>
@@ -40,7 +41,7 @@ export default function CaseStudyPage({ slug }) {
 
     <section className="case-section" aria-labelledby="case-screens">
       <h2 id="case-screens">{en ? 'Screens' : 'Schermate'}</h2>
-      <div className={item.shotLayout === 'grid' ? 'case-shots case-shots-grid' : 'case-shots'}>{item.screenshots.map(shot => <figure key={shot.src} className={shot.height > shot.width * 1.2 ? 'is-tall' : undefined}>
+      <div className={item.shotLayout === 'aerides' ? 'case-shots case-shots-aerides' : item.shotLayout === 'grid' ? 'case-shots case-shots-grid' : 'case-shots'}>{item.screenshots.map(shot => <figure key={shot.src} className={shot.height > shot.width * 1.2 ? 'is-tall' : undefined}>
         <img src={shot.src} width={shot.width} height={shot.height} alt={shot.alt[lang]} loading="lazy" decoding="async" />
         <figcaption className="mono">{shot.caption[lang]}</figcaption>
       </figure>)}</div>

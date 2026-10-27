@@ -24,7 +24,8 @@
 .case-section .detail-points { margin: 0; }
 .case-section .detail-points h3 { margin-top: 10px; }
 .case-shots { display: grid; grid-template-columns: 1fr minmax(0, .42fr) 1fr; gap: 20px; align-items: start; }
-.case-shots-grid { grid-template-columns: 1fr 1fr; }
+.case-shots-grid, .case-shots-aerides { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.case-shots-aerides > .is-tall { grid-column: 1 / -1; width: 100%; max-width: 300px; justify-self: center; }
 /* Con un numero dispari di schermate la prima occupa tutta la riga, così la griglia non resta con un buco. */
 .case-shots-grid > figure:first-child:nth-last-child(odd) { grid-column: 1 / -1; }
 .case-shots figure { margin: 0; }
