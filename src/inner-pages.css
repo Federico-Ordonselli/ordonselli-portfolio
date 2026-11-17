@@ -76,3 +76,15 @@
 .pdf-dialog:not([open]) { display: none; }
 .pdf-dialog::backdrop { background: #172018b9; backdrop-filter: blur(7px); }
 @media (max-width: 720px) { .pdf-dialog { max-width: calc(100vw - 20px); max-height: 92dvh; } }
+
+/* Informative legali (es. /compagnia/privacy): testo lungo, colonna stretta. */
+.legal-page { max-width: 760px; }
+.legal-page .section-header h1 { font-size: clamp(42px, 6vw, 72px); }
+.legal-facts { display: flex; flex-wrap: wrap; gap: 12px 40px; margin: -20px 0 48px; }
+.legal-facts dt { color: #72766a; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+.legal-facts dd { margin: 4px 0 0; }
+.legal-page h2 { margin: 44px 0 12px; font-size: clamp(22px, 2.6vw, 28px); font-weight: 500; letter-spacing: -.03em; }
+.legal-page p, .legal-page li { color: #4f544a; font-size: 16px; line-height: 1.75; }
+.legal-page ul { padding-left: 1.2em; }
+.legal-page li + li { margin-top: 8px; }
+.legal-page a { color: var(--blue); }
