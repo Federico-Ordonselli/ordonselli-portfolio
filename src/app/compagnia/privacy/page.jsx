@@ -2,10 +2,9 @@ import SectionHeader from '../../../components/SectionHeader';
 
 // Informativa privacy dell'app Android «Compagnia» (link richiesto da Google Play).
 // Fonte: store/privacy-policy.md nel repo privato dell'app. Se cambia lì, aggiornare anche qui.
-// Da compilare prima di pubblicare: nome come appare su Google Play ed email di contatto pubblica.
-const OWNER = '';
-const CONTACT = '';
-const UPDATED = '17 novembre 2026';
+const OWNER = 'Ogzorp';
+const CONTACT = 'Ogzorp@gmail.com';
+const UPDATED = '20 novembre 2026';
 
 export const metadata = {
   title: 'Compagnia — Informativa sulla privacy',
