@@ -120,6 +120,11 @@ body { margin: 0; }
 .featured-project { display: block; text-decoration: none; min-width: 0; }
 .project-art { height: 240px; overflow: hidden; border-radius: 6px; transition: transform .3s; padding: 22px; position: relative; }
 .featured-project:hover .project-art { transform: translateY(-5px); }
+/* Anteprime da schermate reali: desktop a tutto campo, mobile come schermo di telefono centrato. */
+.project-art.art-shot { padding: 0; border: 1px solid var(--border); }
+.art-shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.project-art.art-shot--phone { display: flex; justify-content: center; padding: 18px 0 0; }
+.art-shot--phone img { width: auto; height: auto; max-width: 62%; min-height: 100%; object-fit: cover; object-position: top; border-radius: 14px 14px 0 0; box-shadow: 0 10px 30px rgb(0 0 0 / .25); }
 .project-info { padding-top: 22px; }
 .project-category { font-size: 8px; color: #787b70; letter-spacing: 1px; }
 .project-info h3 { display: flex; align-items: center; justify-content: space-between; margin: 10px 0 8px; font-size: 23px; letter-spacing: -.7px; }

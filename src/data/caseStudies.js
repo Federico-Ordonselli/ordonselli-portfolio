@@ -933,6 +933,214 @@ export const caseStudies = [
       repo: 'https://github.com/Federico-Ordonselli/covershift',
     },
   },
+  // Weirder, Manpietro, Compagnia e Do sta? seguono le overview di progetto del
+  // 18 novembre 2026 (~/progetti/overviews_1811). Schermate del 23 novembre 2026.
+  {
+    slug: 'weirder',
+    title: 'Weirder',
+    art: 'weirder',
+    eyebrow: { it: 'WEB APP · TYPESCRIPT + THREE.JS + WEBASSEMBLY', en: 'WEB APP · TYPESCRIPT + THREE.JS + WEBASSEMBLY' },
+    headline: { it: 'Un CAD per chi odia i CAD.', en: 'A CAD for people who hate CAD.' },
+    intro: {
+      it: 'Weirder è un’app web per disegnare dal tablet oggetti funzionali da stampare in 3D: supporti, scatoline, ricambi con misure precise. Disegni la forma come su un foglio, l’app la raddrizza, scrivi le misure in millimetri, alzi il pezzo, aggiungi i fori ed esporti un file pronto per lo slicer. L’obiettivo dichiarato: se per fare una scatola serve un tutorial, il progetto ha fallito.',
+      en: 'Weirder is a web app for designing functional 3D-printable objects on a tablet: brackets, small boxes, spare parts with exact measurements. You sketch the shape as if on paper, the app straightens it, you type the measurements in millimetres, extrude the part, add holes and export a file ready for the slicer. The stated goal: if making a box needs a tutorial, the project has failed.',
+    },
+    facts: [
+      { label: { it: 'Dispositivo', en: 'Device' }, value: { it: 'Tablet Android con penna (Galaxy Tab S9 FE) · iPad secondario', en: 'Android tablet with a pen (Galaxy Tab S9 FE) · iPad as secondary' } },
+      { label: { it: 'Stack', en: 'Stack' }, value: { it: 'TypeScript · Vite · three.js · manifold-3d (WASM) · IndexedDB · PWA', en: 'TypeScript · Vite · three.js · manifold-3d (WASM) · IndexedDB · PWA' } },
+      { label: { it: 'Qualità', en: 'Quality' }, value: { it: 'Vitest su geometria, modello, schizzo ed export · e2e Playwright con penna simulata', en: 'Vitest on geometry, model, sketch and export · Playwright e2e with a simulated pen' } },
+      { label: { it: 'Stato', en: 'Status' }, value: { it: 'MVP funzionante online · in rifinitura sul tablet di riferimento', en: 'Working MVP online · being refined on the reference tablet' } },
+    ],
+    problem: {
+      it: 'Per stampare un supporto o una scatola con misure precise oggi serve un CAD parametrico: alberi di feature, vincoli, pannelli, tastiera. È troppo per un oggetto da cinque minuti, e i modellatori “facili” spesso esportano mesh che lo slicer deve riparare.',
+      en: 'Printing a bracket or a box with exact dimensions today means a parametric CAD: feature trees, constraints, panels and a keyboard. That is too much for a five-minute object, and “easy” modellers often export meshes the slicer has to repair.',
+    },
+    solution: {
+      it: 'Un ciclo unico disegna → misura → alza → modifica, tutto con penna e dito. Il progetto è una “ricetta” di operazioni (schizzo con misure, estrusione, foro…) valutata da manifold-3d in WebAssembly, la stessa libreria geometrica di OpenSCAD: cambi una misura e il pezzo si ricalcola, e ogni esportazione è un solido chiuso per costruzione. L’interfaccia è scritta a mano senza framework, con bottoni da almeno 44 px.',
+      en: 'A single draw → measure → extrude → edit loop, all with pen and finger. A project is a “recipe” of operations (sketch with dimensions, extrusion, hole…) evaluated by manifold-3d in WebAssembly, the same geometry library OpenSCAD uses: change a measurement and the part is recomputed, and every export is a closed solid by construction. The UI is hand-written with no framework and buttons of at least 44 px.',
+    },
+    features: [
+      { title: { it: 'Schizzo raddrizzato', en: 'Straightened sketching' }, text: { it: 'Il tratto a mano diventa segmenti e archi; tocchi un lato e scrivi la misura su un tastierino numerico grande.', en: 'The freehand stroke becomes segments and arcs; tap a side and type its length on a large numeric keypad.' } },
+      { title: { it: 'Alza, tira e spingi', en: 'Extrude, push and pull' }, text: { it: 'Estrusione con una maniglia, push/pull su qualsiasi faccia e disegno anche da vista frontale o laterale.', en: 'Extrusion with a handle, push/pull on any face, and sketching from front or side views too.' } },
+      { title: { it: 'Fori e modelli pronti', en: 'Holes and ready-made templates' }, text: { it: 'Fori per viti standard che attraversano solo la parete toccata; scatola con coperchio, supporto a L, distanziale e piastra forata.', en: 'Standard screw holes that only cut through the touched wall; a box with lid, L-bracket, spacer and drilled plate.' } },
+      { title: { it: 'Export sempre stampabile', en: 'Always-printable export' }, text: { it: 'Unisce i corpi, verifica che il solido sia chiuso, lo appoggia a Z = 0 e scarica STL o 3MF.', en: 'Merges the bodies, checks the solid is closed, places it at Z = 0 and downloads an STL or 3MF.' } },
+    ],
+    shotLayout: 'grid',
+    screenshots: [
+      { src: '/projects/weirder/sketch.webp', width: 1440, height: 860, alt: { it: 'Un quadrilatero disegnato a mano e già raddrizzato sulla griglia, con le etichette delle misure 80 e 53 e il tastierino numerico aperto sul lato 2.', en: 'A hand-drawn quadrilateral already straightened on the grid, with dimension labels 80 and 53 and the numeric keypad open on side 2.' }, caption: { it: 'Schizzo e misure in millimetri', en: 'Sketch and measurements in millimetres' } },
+      { src: '/projects/weirder/radial-menu.webp', width: 1440, height: 860, alt: { it: 'Una scatola selezionata con il menu radiale attorno: Svuota, Arrotonda, Buco, Sposta, Ruota, Duplica, Elimina.', en: 'A selected box with the radial menu around it: Hollow, Round, Hole, Move, Rotate, Duplicate, Delete.' }, caption: { it: 'Menu sull’oggetto, niente pannelli', en: 'On-object menu, no panels' } },
+      { src: '/projects/weirder/box-with-lid.webp', width: 1440, height: 860, alt: { it: 'Scatola con coperchio dal modello pronto, con un foro per vite M3 sulla parete frontale.', en: 'A box with lid from the ready-made template, with an M3 screw hole in the front wall.' }, caption: { it: 'Scatola con coperchio e foro M3', en: 'Box with lid and an M3 hole' } },
+    ],
+    screenshotNote: {
+      it: 'Schermate del 23 novembre 2026 dal browser desktop, con input della penna simulato come nei test e2e. L’app è pensata per il tablet.',
+      en: 'Screenshots taken on 23 November 2026 in a desktop browser, with pen input simulated as in the e2e tests. The app is designed for tablets.',
+    },
+    decisions: [
+      { title: { it: 'Un modello a ricetta, non una mesh', en: 'A recipe model, not a mesh' }, text: { it: 'Il progetto salva la lista di operazioni, non i triangoli. Annulla/ripeti diventa semplice e una misura cambiata ricalcola tutto. L’albero però non si mostra mai: si modifica toccando l’oggetto.', en: 'The project stores the list of operations, not the triangles. Undo/redo becomes simple and a changed measurement recomputes everything. The tree is never shown, though: you edit by touching the object.' } },
+      { title: { it: 'Solidi chiusi per costruzione', en: 'Closed solids by construction' }, text: { it: 'Estrusioni, unioni e sottrazioni passano da manifold-3d. Valori di arrotondamento o svuotamento che cancellerebbero parti sottili vengono rifiutati prima, non scoperti nello slicer.', en: 'Extrusions, unions and subtractions go through manifold-3d. Rounding or hollowing values that would erase thin parts are rejected up front, not discovered in the slicer.' } },
+      { title: { it: 'Penna e dito, ruoli separati', en: 'Pen and finger, separate roles' }, text: { it: 'Con i Pointer Events la penna disegna e il dito naviga; il palmo appoggiato non muove la vista. Un interruttore permette di disegnare col dito quando la penna non c’è.', en: 'With Pointer Events the pen draws and the finger navigates; a resting palm doesn’t move the view. A toggle lets you draw with a finger when there is no pen.' } },
+    ],
+    limits: {
+      it: 'È un MVP personale: niente scultura organica, assemblaggi mobili, materiali o slicing, e volutamente niente alberi di feature o vincoli. È ottimizzato per un tablet Android con penna; su iPad funziona ma è meno provato.',
+      en: 'It is a personal MVP: no organic sculpting, moving assemblies, materials or slicing, and deliberately no feature trees or constraints. It is optimised for an Android tablet with a pen; it works on iPad but has been tested less.',
+    },
+    links: { demo: 'https://weirder.vercel.app' },
+    demoNote: { it: 'Si usa meglio da tablet. Il codice è in un repository privato.', en: 'Best used on a tablet. The code is in a private repository.' },
+  },
+  {
+    slug: 'manpietro',
+    title: 'Manpietro',
+    art: 'manpietro',
+    eyebrow: { it: 'SITO CLIENTE · NEXT.JS + SANITY', en: 'CLIENT SITE · NEXT.JS + SANITY' },
+    headline: { it: 'La musica non si ferma tra una pagina e l’altra.', en: 'The music keeps playing from page to page.' },
+    intro: {
+      it: 'Sito catalogo bilingue per Manpietro, producer romano che vende beat, drum kit e sample pack e offre beat su commissione. Il cuore è un player audio persistente con waveform: si ascolta il catalogo mentre si naviga, poi si compra su BeatStars o si scrive su Instagram. L’obiettivo concordato con il cliente sono i click d’acquisto e i contatti.',
+      en: 'A bilingual catalogue site for Manpietro, a Rome-based producer who sells beats, drum kits and sample packs and makes custom beats. At its heart is a persistent audio player with waveforms: you listen to the catalogue while browsing, then buy on BeatStars or message on Instagram. The goal agreed with the client is purchase clicks and enquiries.',
+    },
+    facts: [
+      { label: { it: 'Cliente', en: 'Client' }, value: { it: 'Music producer · lavoro freelance', en: 'Music producer · freelance work' } },
+      { label: { it: 'Stack', en: 'Stack' }, value: { it: 'Next.js 16 · React 19 · TypeScript · Tailwind CSS 4 · Sanity · Zustand · wavesurfer.js', en: 'Next.js 16 · React 19 · TypeScript · Tailwind CSS 4 · Sanity · Zustand · wavesurfer.js' } },
+      { label: { it: 'Tempi', en: 'Timeline' }, value: { it: 'Prima versione in 3 giorni · poi album, produzioni e “fuori catalogo” su richiesta', en: 'First version in 3 days · then albums, productions and “off-catalogue” on request' } },
+      { label: { it: 'Stato', en: 'Status' }, value: { it: 'Online su Vercel · contenuti gestiti dal cliente in Sanity Studio', en: 'Live on Vercel · content managed by the client in Sanity Studio' } },
+    ],
+    problem: {
+      it: 'I producer vendono su BeatStars, ma il player incorporabile è scadente e non si personalizza, e non esiste un’API pubblica: lo scraping sarebbe fragile e contro i termini d’uso. Serviva un sito che facesse ascoltare bene il catalogo e portasse all’acquisto, aggiornabile dal cliente senza di me.',
+      en: 'Producers sell on BeatStars, but its embeddable player is poor and can’t be customised, and there is no public API: scraping would be fragile and against the terms of service. The site had to make the catalogue sound good, lead to a purchase and be updatable by the client without me.',
+    },
+    solution: {
+      it: 'Il catalogo vive su Sanity: il producer carica ogni beat con anteprima MP3, metadati e link BeatStars in circa due minuti, e il sito non chiama mai BeatStars. Next.js 16 serve le pagine con Cache Components; un webhook firmato invalida solo i contenuti cambiati, quindi una pubblicazione è online senza deploy. Un unico elemento audio nel layout radice, guidato da uno store Zustand, tiene viva la riproduzione durante la navigazione.',
+      en: 'The catalogue lives in Sanity: the producer uploads each beat with an MP3 preview, metadata and a BeatStars link in about two minutes, and the site never calls BeatStars. Next.js 16 serves pages with Cache Components; a signed webhook invalidates only the changed content, so a publish goes live without a deploy. A single audio element in the root layout, driven by a Zustand store, keeps playback going while navigating.',
+    },
+    features: [
+      { title: { it: 'Player persistente', en: 'Persistent player' }, text: { it: 'Coda che segue la lista filtrata, autoplay, salto automatico in caso di errore, scorciatoie da tastiera e controlli dal blocco schermo con la Media Session API.', en: 'A queue that follows the filtered list, autoplay, automatic skip on errors, keyboard shortcuts and lock-screen controls via the Media Session API.' } },
+      { title: { it: 'Catalogo filtrabile', en: 'Filterable catalogue' }, text: { it: 'Ricerca e filtri per genere, BPM e tonalità salvati nell’URL, quindi condivisibili.', en: 'Search and filters by genre, BPM and key, saved in the URL so they can be shared.' } },
+      { title: { it: 'Album con Canvas', en: 'Albums with Canvas' }, text: { it: 'Video in loop in stile Spotify nel player espanso, caricati in modo differito nelle liste.', en: 'Spotify-style looping videos in the expanded player, lazy-loaded in lists.' } },
+      { title: { it: 'Condivisione e misure', en: 'Sharing and measurement' }, text: { it: 'Open Graph dinamico per ogni beat e analytics cookieless con Umami su play, filtri e click d’acquisto.', en: 'Dynamic Open Graph for every beat and cookieless Umami analytics on plays, filters and purchase clicks.' } },
+    ],
+    screenshots: [
+      { src: '/projects/manpietro/home.webp', width: 1440, height: 900, alt: { it: 'Homepage di Manpietro: il nome a tutta larghezza su un video scuro, con i pulsanti Ascolta i beat e Vedi le licenze.', en: 'The Manpietro homepage: the name spanning the width over a dark video, with Listen to the beats and See licences buttons.' }, caption: { it: 'Homepage', en: 'Homepage' } },
+      { src: '/projects/manpietro/player-mobile.webp', width: 720, height: 1558, alt: { it: 'Player espanso su telefono: copertina del beat COLD, genere, BPM e tonalità, waveform, controlli e pulsante Acquista.', en: 'Expanded player on a phone: cover of the beat COLD, genre, BPM and key, waveform, controls and a Buy button.' }, caption: { it: 'Player espanso da telefono', en: 'Expanded player on mobile' } },
+      { src: '/projects/manpietro/catalog-player.webp', width: 1440, height: 900, alt: { it: 'Catalogo con ricerca, filtri per genere, tonalità e BPM, copertine dei beat e la barra del player in riproduzione in basso.', en: 'The catalogue with search, genre, key and BPM filters, beat covers and the playing player bar at the bottom.' }, caption: { it: 'Catalogo e player in riproduzione', en: 'Catalogue with the player running' } },
+    ],
+    screenshotNote: {
+      it: 'Schermate del 23 novembre 2026 dal sito online.',
+      en: 'Screenshots taken on 23 November 2026 from the live site.',
+    },
+    decisions: [
+      { title: { it: 'Waveform senza scaricare l’audio', en: 'Waveforms without downloading the audio' }, text: { it: '120 picchi vengono pre-calcolati nello Studio con la Web Audio API (o con ffmpeg) e salvati con il beat: il sito disegna la waveform senza scaricare l’MP3.', en: '120 peaks are pre-computed in the Studio with the Web Audio API (or ffmpeg) and stored with the beat: the site draws the waveform without downloading the MP3.' } },
+      { title: { it: 'Aggiornamenti senza deploy', en: 'Updates without a deploy' }, text: { it: 'Contenuti in cache con tag; il webhook di Sanity, con firma verificata, invalida i tag interessati e la pagina si aggiorna subito.', en: 'Content is cached with tags; the Sanity webhook, with a verified signature, invalidates the affected tags and the page updates immediately.' } },
+      { title: { it: 'Privacy senza banner', en: 'Privacy without a banner' }, text: { it: 'Nessun cookie né script di terze parti: analytics cookieless e nessun banner da mostrare a chi arriva da Instagram sul telefono.', en: 'No cookies or third-party scripts: cookieless analytics and no banner for visitors arriving from Instagram on their phones.' } },
+    ],
+    limits: {
+      it: 'Non è un e-commerce: l’acquisto avviene su BeatStars, via Instagram o email. Ogni beat va caricato anche su Sanity, scelta consapevole al posto di un’integrazione che BeatStars non permette.',
+      en: 'It is not an e-commerce site: purchases happen on BeatStars, Instagram or email. Each beat also has to be uploaded to Sanity, a deliberate trade-off in place of an integration BeatStars doesn’t allow.',
+    },
+    links: { demo: 'https://manpietro.vercel.app' },
+    demoNote: { it: 'Il codice è in un repository privato del progetto cliente.', en: 'The code is in a private client repository.' },
+  },
+  {
+    slug: 'compagnia',
+    title: 'Compagnia',
+    art: 'compagnia',
+    eyebrow: { it: 'APP ANDROID · JAVASCRIPT + CAPACITOR', en: 'ANDROID APP · JAVASCRIPT + CAPACITOR' },
+    headline: { it: 'I dadi restano veri. Le somme le fa lei.', en: 'The dice stay real. It does the maths.' },
+    intro: {
+      it: 'Compagnia è una scheda personaggio digitale per Dungeons & Dragons 5e in italiano, pensata per chi gioca per la prima volta. Sostituisce scheda cartacea e appunti e spiega ogni tiro: quale dado, cosa aggiungere e da dove arriva il bonus. Non tira i dadi al posto tuo: scrivi il risultato e lei fa il totale.',
+      en: 'Compagnia is a digital character sheet for Dungeons & Dragons 5e in Italian, designed for first-time players. It replaces the paper sheet and notes and explains every roll: which die, what to add and where the bonus comes from. It doesn’t roll the dice for you: you type the result and it does the total.',
+    },
+    facts: [
+      { label: { it: 'Piattaforme', en: 'Platforms' }, value: { it: 'Web app offline · app Android (Capacitor 8)', en: 'Offline web app · Android app (Capacitor 8)' } },
+      { label: { it: 'Stack', en: 'Stack' }, value: { it: 'HTML, CSS e JavaScript vanilla (ES modules) · zero dipendenze runtime · nessun build step', en: 'Vanilla HTML, CSS and JavaScript (ES modules) · zero runtime dependencies · no build step' } },
+      { label: { it: 'Qualità', en: 'Quality' }, value: { it: '51 test di logica · 79 Playwright a 320/390/1280 px · WebKit in Docker · 14 prove sull’app Android', en: '51 logic tests · 79 Playwright tests at 320/390/1280 px · WebKit in Docker · 14 checks on the Android app' } },
+      { label: { it: 'Stato', en: 'Status' }, value: { it: 'Build release firmabile · pubblicazione su Google Play in preparazione', en: 'Signable release build · Google Play release in preparation' } },
+    ],
+    problem: {
+      it: 'Alla prima partita di D&D la scheda cartacea è un muro di numeri: non si sa quale bonus usare, si sbagliano le somme e il tavolo aspetta. Le app esistenti spesso tirano i dadi al posto tuo, togliendo la parte più bella del gioco.',
+      en: 'At your first game of D&D the paper sheet is a wall of numbers: you don’t know which bonus applies, you get the sums wrong and the table waits. Existing apps often roll the dice for you, taking away the best part of the game.',
+    },
+    solution: {
+      it: 'Una vista “Tavolo” che mostra solo ciò che serve nel momento (il mio turno, fuori turno, esplorazione, riposo) e una guida al tiro su ogni bonus. I calcoli sono funzioni pure e testate; armi e incantesimi arrivano da uno script Python che estrae i dati dal PDF ufficiale dell’SRD 5.2.1 in italiano e ne verifica conteggi e integrità. La stessa web app, senza dipendenze, viene impacchettata per Android con Capacitor.',
+      en: 'A “Table” view that shows only what matters right now (my turn, off turn, exploration, rest) and a roll guide on every bonus. The calculations are pure, tested functions; weapons and spells come from a Python script that extracts them from the official Italian SRD 5.2.1 PDF and verifies counts and integrity. The same dependency-free web app is packaged for Android with Capacitor.',
+    },
+    features: [
+      { title: { it: 'Guida al tiro', en: 'Roll guide' }, text: { it: 'Tocchi un bonus: dado da tirare, cosa aggiungere e perché. Scrivi il d20 e vedi il totale, con vantaggio e svantaggio spiegati.', en: 'Tap a bonus: which die to roll, what to add and why. Type the d20 and see the total, with advantage and disadvantage explained.' } },
+      { title: { it: 'Armi e magie SRD', en: 'SRD weapons and spells' }, text: { it: '38 armi con colpire, danni e critici calcolati e 339 incantesimi in italiano filtrabili, con slot, concentrazione e CD.', en: '38 weapons with to-hit, damage and criticals calculated, and 339 filterable spells in Italian with slots, concentration and DC.' } },
+      { title: { it: 'Creazione guidata', en: 'Guided creation' }, text: { it: 'Quattro passi per creare il personaggio, scheda d’esempio al primo avvio e “? Spiegami” in ogni sezione.', en: 'Four steps to create a character, a sample sheet on first launch and “? Explain” in every section.' } },
+      { title: { it: 'Dati al sicuro', en: 'Safe data' }, text: { it: 'Salvataggi locali con quarantena dei file illeggibili, copia privata su Android, export/import JSON e stampa A4.', en: 'Local saves with quarantine for unreadable data, a private copy on Android, JSON export/import and A4 printing.' } },
+    ],
+    shotLayout: 'phones',
+    screenshots: [
+      { src: '/projects/compagnia/table.webp', width: 720, height: 1280, alt: { it: 'Vista Tavolo di Lia Fogliargento, elfa maga di livello 3: CA, iniziativa, punti ferita, slot e i momenti Il mio turno, Fuori turno, Esplorazione, Riposo.', en: 'Table view for Lia Fogliargento, a level 3 elf wizard: AC, initiative, hit points, slots and the My turn, Off turn, Exploration and Rest modes.' }, caption: { it: 'Il tavolo, il mio turno', en: 'The table, my turn' } },
+      { src: '/projects/compagnia/roll-guide.webp', width: 720, height: 1280, alt: { it: 'Guida al tiro per il bastone ferrato: tira un d20, aggiungi +1 (Forza -1, competenza +2), con 15 sul dado il totale è 16.', en: 'Roll guide for the quarterstaff: roll a d20, add +1 (Strength -1, proficiency +2); with 15 on the die the total is 16.' }, caption: { it: 'Guida al tiro', en: 'Roll guide' } },
+      { src: '/projects/compagnia/spells.webp', width: 720, height: 1280, alt: { it: 'Sezione Magie: attacco magico +5, CD 13, slot rimasti e il trucchetto Dardo di fuoco pronto da lanciare.', en: 'Spells section: spell attack +5, DC 13, remaining slots and the Fire Bolt cantrip ready to cast.' }, caption: { it: 'Magie e slot', en: 'Spells and slots' } },
+      { src: '/projects/compagnia/dark-theme.webp', width: 720, height: 1280, alt: { it: 'Vista Fuori turno in tema scuro con i controlli per danni e cure.', en: 'Off-turn view in the dark theme with damage and healing controls.' }, caption: { it: 'Fuori turno, tema scuro', en: 'Off turn, dark theme' } },
+    ],
+    screenshotNote: {
+      it: 'Schermate dell’app Android preparate per la scheda del Play Store. Il personaggio è d’esempio.',
+      en: 'Android app screenshots prepared for the Play Store listing. The character is a sample.',
+    },
+    decisions: [
+      { title: { it: 'Zero dipendenze, nessun build', en: 'Zero dependencies, no build' }, text: { it: 'La cartella distribuita è l’app stessa: niente bundler né librerie da aggiornare. Una Content Security Policy vieta script esterni e i testi importati sono sempre trattati come testo.', en: 'The distributed folder is the app itself: no bundler or libraries to update. A Content Security Policy blocks external scripts and imported text is always treated as text.' } },
+      { title: { it: 'Dati di gioco verificabili', en: 'Verifiable game data' }, text: { it: 'Il catalogo è generato dal PDF SRD (CC BY 4.0), con controllo di conteggi e unicità e SHA-256 del PDF registrato. Attribuzione in app, nella stampa e nei backup.', en: 'The catalogue is generated from the SRD PDF (CC BY 4.0), with count and uniqueness checks and the PDF’s SHA-256 recorded. Attribution appears in the app, in prints and in backups.' } },
+      { title: { it: 'Non perdere mai una scheda', en: 'Never lose a sheet' }, text: { it: 'Un salvataggio corrotto non viene sovrascritto ma messo da parte e scaricabile; un import non valido non cambia nulla; l’aggiornamento dell’app è provato senza perdita di dati.', en: 'A corrupted save is never overwritten but set aside and downloadable; an invalid import changes nothing; app updates are tested for zero data loss.' } },
+    ],
+    limits: {
+      it: 'Non è un motore completo delle regole né un lanciadadi: non valida point buy, multiclasse o avanzamento, e copre solo l’SRD, non i manuali completi. Niente account né sincronizzazione: i dati restano sul dispositivo.',
+      en: 'It is neither a full rules engine nor a dice roller: it doesn’t validate point buy, multiclassing or levelling, and it covers only the SRD, not the full rulebooks. No accounts or sync: data stays on the device.',
+    },
+    links: {},
+  },
+  {
+    slug: 'do-sta',
+    title: 'Do sta?',
+    art: 'do-sta',
+    eyebrow: { it: 'APP MOBILE · FLUTTER + FASTAPI + AI LOCALE', en: 'MOBILE APP · FLUTTER + FASTAPI + LOCAL AI' },
+    headline: { it: 'Dove sta il cavo HDMI? Te lo dice il telefono.', en: 'Where’s the HDMI cable? Your phone knows.' },
+    intro: {
+      it: 'Do sta? è un inventario di casa offline-first. Luoghi e contenitori si annidano liberamente (casa, stanza, mobile, cassetto, scatola), ogni oggetto può stare in più posti con quantità diverse e una ricerca trova anche il percorso completo. Il telefono è autonomo; un server domestico opzionale fa da replica e riconosce gli oggetti dalle foto con un modello vision che gira in locale. Niente cloud, niente account, niente abbonamenti.',
+      en: 'Do sta? is an offline-first home inventory. Places and containers nest freely (house, room, cabinet, drawer, box), each item can be in several places with different quantities, and search also finds the full path. The phone works on its own; an optional home server acts as a replica and recognises items from photos with a vision model running locally. No cloud, no accounts, no subscriptions.',
+    },
+    facts: [
+      { label: { it: 'Architettura', en: 'Architecture' }, value: { it: 'App Flutter · server FastAPI su SQLite · worker AI separato con Ollama', en: 'Flutter app · FastAPI server on SQLite · separate AI worker with Ollama' } },
+      { label: { it: 'Stack', en: 'Stack' }, value: { it: 'Flutter · Riverpod · Drift · go_router · Python · FastAPI · Pydantic · Docker Compose · Caddy', en: 'Flutter · Riverpod · Drift · go_router · Python · FastAPI · Pydantic · Docker Compose · Caddy' } },
+      { label: { it: 'Qualità', en: 'Quality' }, value: { it: '27 test backend · 23 test app, alcuni contro il server reale con guasti di rete simulati', en: '27 backend tests · 23 app tests, some against the real server with simulated network faults' } },
+      { label: { it: 'Stato', en: 'Status' }, value: { it: 'APK di debug e server Docker funzionanti · riconoscimento provato su foto reali', en: 'Working debug APK and Docker server · recognition tested on real photos' } },
+    ],
+    problem: {
+      it: 'Ritrovare le cose in casa: «Casa › Soffitta › Mobile nero › Cassetto 1» contiene tre cavi HDMI, due USB-C e un alimentatore. Cerco “HDMI” e voglio vedere quantità, foto e percorso, e poter spostare uno solo dei tre cavi. Il tutto senza dipendere da Internet né dare i miei dati a un servizio.',
+      en: 'Finding things at home: “House › Attic › Black cabinet › Drawer 1” holds three HDMI cables, two USB-C cables and a power supply. I search “HDMI” and want to see quantity, photos and path, and be able to move just one of the three cables. All without depending on the internet or handing my data to a service.',
+    },
+    solution: {
+      it: 'Ogni schermata legge dal database locale e nessuna operazione aspetta la rete. Ogni modifica è una transazione che aggiorna le entità e accoda un’operazione di dominio in una outbox. Il motore di sync invia le operazioni al server, che assegna revisioni monotone e le registra per id: un reinvio dà lo stesso esito. Al pull, le operazioni ancora pendenti vengono riapplicate sopra lo stato del server con lo stesso reducer, così nulla di locale va perso.',
+      en: 'Every screen reads from the local database and no action waits for the network. Each change is a transaction that updates entities and queues a domain operation in an outbox. The sync engine sends operations to the server, which assigns monotonic revisions and records them by id: a resend gives the same result. On pull, pending operations are replayed on top of the server state with the same reducer, so nothing local is lost.',
+    },
+    features: [
+      { title: { it: 'Contenitori e giacenze', en: 'Containers and stock' }, text: { it: 'Gerarchia libera di luoghi; l’oggetto è separato da quanti pezzi stanno dove, con spostamento parziale “sposta 1 di 3”.', en: 'A free hierarchy of places; the item is separate from how many pieces are where, with partial moves like “move 1 of 3”.' } },
+      { title: { it: 'Foto ora, dettagli dopo', en: 'Photo now, details later' }, text: { it: 'Catture veloci da completare in seguito; foto identificate da SHA-256 con miniature generate sul telefono.', en: 'Quick captures to complete later; photos identified by SHA-256 with thumbnails generated on the phone.' } },
+      { title: { it: 'Riconoscimento con AI locale', en: 'Local AI recognition' }, text: { it: 'Un modello vision via Ollama propone nome e quantità dalla foto in circa 8 secondi; l’utente corregge e conferma.', en: 'A vision model via Ollama suggests name and quantity from the photo in about 8 seconds; the user corrects and confirms.' } },
+      { title: { it: 'QR, cestino e backup', en: 'QR, trash and backups' }, text: { it: 'Etichette QR in PDF e scanner, cestino ripristinabile, cronologia, export/import zip e modalità demo separata.', en: 'PDF QR labels and a scanner, a restorable trash, history, zip export/import and a separate demo mode.' } },
+    ],
+    shotLayout: 'phones',
+    screenshots: [
+      { src: '/projects/do-sta/drawer.webp', width: 720, height: 1218, alt: { it: 'Contenuto di Cassetto 1 con il percorso Casa › Soffitta › Mobile nero e tre oggetti con quantità modificabili.', en: 'Contents of Drawer 1 with the path House › Attic › Black cabinet and three items with editable quantities.' }, caption: { it: 'Un cassetto e il suo percorso', en: 'A drawer and its path' } },
+      { src: '/projects/do-sta/item.webp', width: 720, height: 1218, alt: { it: 'Scheda del Cavo USB-C: 5 in totale, 3 in Cassetto 1 e 2 in Scatola cavi.', en: 'USB-C cable page: 5 in total, 3 in Drawer 1 and 2 in the Cable box.' }, caption: { it: 'Lo stesso oggetto in due posti', en: 'The same item in two places' } },
+      { src: '/projects/do-sta/home.webp', width: 720, height: 1218, alt: { it: 'Schermata iniziale in modalità demo con la ricerca e il luogo principale Casa.', en: 'Home screen in demo mode with search and the top-level place House.' }, caption: { it: 'Home e ricerca', en: 'Home and search' } },
+    ],
+    screenshotNote: {
+      it: 'Schermate del 23 novembre 2026 dalla build Linux dell’app Flutter in modalità demo, con i dati di esempio dell’app.',
+      en: 'Screenshots taken on 23 November 2026 from the Linux build of the Flutter app in demo mode, with the app’s sample data.',
+    },
+    decisions: [
+      { title: { it: 'Conflitti per campo, non last-write-wins', en: 'Per-field conflicts, not last-write-wins' }, text: { it: 'C’è conflitto solo se lo stesso campo è stato cambiato da un altro dispositivo con un valore diverso; modifiche a campi diversi si fondono da sole. Ogni conflitto resta salvato e l’utente sceglie quale versione tenere.', en: 'A conflict happens only when another device changed the same field to a different value; edits to different fields merge on their own. Every conflict is stored and the user chooses which version to keep.' } },
+      { title: { it: 'L’AI propone, non scrive', en: 'The AI suggests, it doesn’t write' }, text: { it: 'Il worker non tocca il database: crea solo suggerimenti. La conferma è un’unica operazione atomica e idempotente, quindi un doppio tap o due telefoni non creano doppioni.', en: 'The worker never touches the database: it only creates suggestions. Confirmation is a single atomic, idempotent operation, so a double tap or two phones can’t create duplicates.' } },
+      { title: { it: 'Niente porte aperte', en: 'No open ports' }, text: { it: 'Il server ascolta solo in locale e si raggiunge via Tailscale o Caddy con CA interna. Pairing con codice monouso e token per dispositivo, salvati solo come hash e revocabili.', en: 'The server only listens locally and is reached via Tailscale or Caddy with an internal CA. Pairing uses a one-time code and per-device tokens, stored only as hashes and revocable.' } },
+    ],
+    limits: {
+      it: 'Un inventario per server con un solo proprietario: più telefoni sì, collaborazione familiare con permessi no. La sync parte ad app aperta, non in background; per ora esiste solo l’APK di debug e iOS è compatibile nel codice ma non compilato.',
+      en: 'One inventory per server with a single owner: several phones yes, family collaboration with permissions no. Sync runs while the app is open, not in the background; for now there is only a debug APK, and iOS is supported in code but not built.',
+    },
+    links: {},
+  },
 ];
 
 export function getCaseStudy(slug) {

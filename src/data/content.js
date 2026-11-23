@@ -93,6 +93,7 @@ const RAW = {
         color: "#7560b5",
         link: "https://federico-ordonselli.github.io/aerides/",
         caseStudy: "/projects/aerides",
+        art: "aerides",
       },
       {
         title: "Runebog GM",
@@ -104,6 +105,18 @@ const RAW = {
         color: "#43B89C",
         link: "https://runebog.app",
         caseStudy: "/projects/runebog-gm",
+      },
+      {
+        title: "Weirder",
+        desc: tr(
+          "Un “CAD per chi odia i CAD” da usare sul tablet: disegni la forma a mano, l’app raddrizza il tratto, scrivi le misure in millimetri e alzi il pezzo, poi esporti uno STL o 3MF sempre stampabile. Sotto c’è un modello “a ricetta” valutato con manifold-3d in WebAssembly; penna e dito hanno ruoli separati grazie ai Pointer Events. PWA installabile e offline, in TypeScript e three.js senza framework.",
+          "A “CAD for people who hate CAD” for tablets: sketch the shape by hand, the app straightens the stroke, you type the measurements in millimetres and extrude the part, then export an STL or 3MF that always prints. Underneath, a “recipe” model is evaluated with manifold-3d in WebAssembly; pen and finger have separate roles thanks to Pointer Events. An installable, offline PWA in TypeScript and three.js with no framework."
+        ),
+        tags: ["TypeScript", "three.js", "WebAssembly", "manifold-3d", "PWA", "Playwright"],
+        color: "#6C63FF",
+        link: "https://weirder.vercel.app",
+        caseStudy: "/projects/weirder",
+        art: "weirder",
       },
       {
         title: "Matchday",
@@ -139,6 +152,41 @@ const RAW = {
         caseStudy: "/projects/vagabondando",
       },
       {
+        title: "Manpietro",
+        desc: tr(
+          "Sito catalogo bilingue per un producer romano che vende beat e drum kit. BeatStars non ha API e il suo player non si personalizza, così il catalogo vive su Sanity e il sito ha un player audio persistente: la musica continua tra le pagine, con waveform pre-calcolate, coda che segue i filtri e controlli dal blocco schermo. Online e aggiornato dal cliente.",
+          "A bilingual catalogue site for a Rome-based producer who sells beats and drum kits. BeatStars has no API and its player can’t be customised, so the catalogue lives in Sanity and the site has a persistent audio player: music keeps playing across pages, with pre-computed waveforms, a queue that follows the filters and lock-screen controls. Live and updated by the client."
+        ),
+        tags: ["Next.js", "TypeScript", "Sanity", "Zustand", "wavesurfer.js", "Tailwind CSS"],
+        color: "#FF6584",
+        link: "https://manpietro.vercel.app",
+        caseStudy: "/projects/manpietro",
+        art: "manpietro",
+      },
+      {
+        title: "Manabikai",
+        desc: tr(
+          "Sito vetrina per una pedagogista: statico in Astro, con i contenuti in Sanity Studio integrato nel sito e una guida “Come si usa” per la cliente, che aggiorna da sola testi, orari e foto. Ho proposto tre design sullo stesso sito, poi revisione insieme e scelta finale. Modulo contatti senza backend, font self-hosted, deploy continuo su Vercel.",
+          "A showcase site for an educational consultant: static Astro with content in a Sanity Studio embedded in the site and a “How to use it” guide for the client, who updates copy, opening hours and photos herself. I proposed three designs on the same site, then we reviewed them together and picked one. Backend-free contact form, self-hosted fonts and continuous deployment on Vercel."
+        ),
+        tags: ["Astro", "Sanity", "GROQ", "Vercel"],
+        color: "#43B89C",
+        link: "https://irenemoscapedagogista.vercel.app",
+        art: "manabikai",
+      },
+      {
+        title: "Compagnia",
+        desc: tr(
+          "Scheda personaggio di D&D 5e in italiano per chi gioca la prima volta: non tira i dadi al posto tuo, ti spiega cosa tirare e da dove arriva ogni bonus, poi fa le somme. 38 armi e 339 incantesimi estratti e verificati dal PDF ufficiale SRD. Web app vanilla senza dipendenze, impacchettata per Android con Capacitor e in arrivo sul Play Store; 130 test automatici su logica, Chromium e WebKit, più 14 prove sull’app Android installata.",
+          "A D&D 5e character sheet in Italian for first-time players: it doesn’t roll the dice for you, it explains what to roll and where every bonus comes from, then does the maths. 38 weapons and 339 spells extracted and verified from the official SRD PDF. A dependency-free vanilla web app packaged for Android with Capacitor and on its way to the Play Store; 130 automated tests across logic, Chromium and WebKit, plus 14 checks on the installed Android app."
+        ),
+        tags: ["JavaScript", "Capacitor", "Android", "Playwright", "node:test"],
+        color: "#F7971E",
+        link: "#",
+        caseStudy: "/projects/compagnia",
+        art: "compagnia",
+      },
+      {
         title: "qrinventory",
         desc: tr(
           "Inventario self-hosted di oggetti fisici con QR code: ogni oggetto e contenitore ha un’etichetta che, inquadrata dal telefono, apre la sua scheda. API FastAPI e SQLModel su SQLite, contenitori annidati senza cicli, fogli di etichette PDF e scanner dalla fotocamera. Gira in Docker sul PC di casa, in HTTPS con Caddy e Let’s Encrypt, senza aprire porte del router.",
@@ -171,6 +219,18 @@ const RAW = {
       },
     ],
     cyber: [
+      {
+        title: "Do sta?",
+        desc: tr(
+          "Inventario di casa offline-first (“dove sta il cavo HDMI?”): luoghi e contenitori annidati, quantità per posizione, foto, etichette QR. Il telefono è autonomo; un server domestico opzionale fa da replica con un protocollo di sync scritto a mano (outbox, idempotenza, conflitti per campo invece del last-write-wins) e propone gli oggetti fotografati con un modello vision locale. Evoluzione di qrinventory. Niente cloud, niente account.",
+          "An offline-first home inventory (“where’s the HDMI cable?”): nested places and containers, quantities per location, photos and QR labels. The phone works on its own; an optional home server acts as a replica through a hand-written sync protocol (outbox, idempotency, per-field conflicts instead of last-write-wins) and suggests photographed items with a local vision model. The evolution of qrinventory. No cloud, no accounts."
+        ),
+        tags: ["Flutter", "Drift", "Riverpod", "FastAPI", "SQLite", "Ollama", "Docker"],
+        color: "#43B89C",
+        link: "#",
+        caseStudy: "/projects/do-sta",
+        art: "do-sta",
+      },
       {
         title: "StudyBuddy",
         desc: tr(
@@ -315,7 +375,7 @@ const RAW = {
       {
         label: tr("Linguaggi e frontend", "Languages & frontend"),
         color: "#6C63FF",
-        items: ["TypeScript", "JavaScript", "React", "Next.js", "Angular", "TanStack Query", "HTML", "CSS", "CSS Modules", "Tailwind CSS", "Python", "Flutter"],
+        items: ["TypeScript", "JavaScript", "React", "Next.js", "Angular", "TanStack Query", "HTML", "CSS", "CSS Modules", "Tailwind CSS", "Astro", "Zustand", "three.js", "Python", "Flutter", "Capacitor"],
       },
       {
         label: tr("Backend e dati", "Backend & data"),

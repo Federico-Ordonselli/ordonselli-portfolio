@@ -1,4 +1,16 @@
+// Anteprime da schermate reali. `phone: true` mostra lo screenshot verticale
+// centrato come uno schermo di telefono, invece di ritagliarlo a tutta larghezza.
+const SHOTS = {
+  weirder: { src: '/projects/weirder/box-with-lid.webp', width: 1440, height: 860, bg: '#f4f4f2' },
+  manpietro: { src: '/projects/manpietro/catalog-player.webp', width: 1440, height: 900, bg: '#0b0c0e' },
+  compagnia: { src: '/projects/compagnia/table.webp', width: 720, height: 1280, bg: '#e9e3d4', phone: true },
+  'do-sta': { src: '/projects/do-sta/item.webp', width: 720, height: 1218, bg: '#1b2a26', phone: true },
+  manabikai: { src: '/projects/manabikai/home.webp', width: 1440, height: 900, bg: '#f9f0eb' },
+};
+
 export default function ProjectArt({ kind }) {
+  const shot = SHOTS[kind];
+  if (shot) return <div className={`project-art art-shot${shot.phone ? ' art-shot--phone' : ''}`} style={{ background: shot.bg }} aria-hidden="true"><img src={shot.src} width={shot.width} height={shot.height} alt="" loading="lazy" decoding="async" /></div>;
   if (kind === 'aerides') return <div className="project-art art-aerides" aria-hidden="true"><img src="/projects/aerides/22-event-detail-full-raid-owner.webp" width="1440" height="900" alt="" decoding="async" /></div>;
   if (kind === 'runebog') return <div className="project-art art-runebog" aria-hidden="true">
     <div className="rune-top"><span>ᚱ RUNЕBOG</span><span>CAMPAIGN WORKSPACE</span></div>

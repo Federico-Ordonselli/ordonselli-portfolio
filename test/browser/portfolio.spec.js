@@ -9,7 +9,7 @@ test('homepage renders, interactive demo works and layout stays within the viewp
   expect(response.status()).toBe(200);
   expect(response.headers()['content-security-policy']).toContain("'nonce-");
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Your next');
-  await expect(page.locator('.featured-project')).toHaveCount(3);
+  await expect(page.locator('.featured-project')).toHaveCount(6);
   await page.getByRole('button', { name: 'Explore', exact: true }).click();
   await expect(page.locator('.preview-explore')).toBeVisible();
   await expect(page.locator('.explore-switcher strong')).toHaveText('Dolomites');
@@ -115,7 +115,7 @@ test('Matchday case study is linked from the homepage and project card', async (
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/');
-  await page.locator('.featured-project').nth(2).click();
+  await page.locator('.featured-project[href="/projects/matchday"]').click();
   await expect(page).toHaveURL(/\/projects\/matchday$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Matchday');
   await expect(page.getByRole('link', { name: /Source code on GitLab/ })).toHaveAttribute('href', 'https://gitlab.com/Federico-Ordonselli/matchday');
@@ -205,8 +205,15 @@ test('toolkit scrolls, emphasises the centre and supports pause and reduced moti
   });
   expect(sizes[0].size).toBeGreaterThan(sizes.find(item => item.distance > 150).size * 1.1);
   await page.getByRole('button', { name: 'Resume toolkit scrolling' }).click();
+  // The click can scroll the page while the section is still revealing, and an off-screen
+  // ribbon pauses itself by design: bring it back and keep the pointer off it.
+  await viewport.scrollIntoViewIfNeeded();
+  await page.mouse.move(0, 0);
   await expect.poll(() => track.evaluate(el => el.style.transform)).not.toBe(stopped);
 
+  // Raw tap coordinates only work on screen: clicking the controls may have scrolled the page.
+  // Scroll the ribbon itself (not an icon, which would also move it sideways) back into view.
+  await viewport.scrollIntoViewIfNeeded();
   // Select a visible icon, including either copy of the seamless loop.
   const choiceIndex = await viewport.evaluate(el => {
     const bounds = el.getBoundingClientRect();

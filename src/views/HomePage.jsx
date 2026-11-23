@@ -15,6 +15,9 @@ export default function HomePage() {
   const data = getContent(lang);
   const selected = [
     { title: 'Runebog GM', kind: 'runebog', slug: 'runebog-gm', href: '/projects/runebog-gm', category: 'WEB APP / NEXT.JS', desc: en ? 'An entire world, organised in a web app.' : 'Un intero mondo, organizzato in una web app.', tags: ['Map editor', 'Cloud save', 'Auth.js'] },
+    { title: 'Weirder', kind: 'weirder', slug: 'weirder', href: '/projects/weirder', category: en ? 'WEB APP / 3D + WASM' : 'WEB APP / 3D + WASM', desc: en ? 'Sketch on a tablet, print a real part.' : 'Disegni sul tablet, stampi un pezzo vero.', tags: ['three.js', 'WebAssembly', 'PWA'] },
+    { title: 'Manpietro', kind: 'manpietro', slug: 'manpietro', href: '/projects/manpietro', category: en ? 'CLIENT SITE / AUDIO' : 'SITO CLIENTE / AUDIO', desc: en ? 'A beat catalogue that never stops playing.' : 'Un catalogo di beat che non smette di suonare.', tags: ['Next.js', 'Sanity', 'Zustand'] },
+    { title: 'Compagnia', kind: 'compagnia', slug: 'compagnia', href: '/projects/compagnia', category: en ? 'ANDROID APP / D&D' : 'APP ANDROID / D&D', desc: en ? 'Your first D&D game, explained roll by roll.' : 'La prima partita a D&D, spiegata tiro per tiro.', tags: ['JavaScript', 'Capacitor', 'Playwright'] },
     { title: 'Vagabondando', kind: 'trekking', slug: 'vagabondando', href: '/projects/vagabondando', category: en ? 'CLIENT SITE / CMS' : 'SITO CLIENTE / CMS', desc: en ? 'Travel stories, written by the client herself.' : 'Racconti di viaggio, scritti dalla cliente.', tags: ['Next.js', 'Sanity CMS', 'Resend'] },
     { title: 'Matchday', kind: 'matchday', slug: 'matchday', href: '/projects/matchday', category: 'FULL STACK / MONOREPO', desc: en ? 'Real football data. A complete platform.' : 'Dati calcistici reali. Una piattaforma completa.', tags: ['React', 'Express', 'PostgreSQL'] },
   ];
@@ -50,7 +53,7 @@ export default function HomePage() {
         <ProjectArt kind={project.kind} />
         <div className="project-info"><span className="mono project-category">{project.category}</span><h3>{project.title}<span aria-hidden="true">↗</span></h3><p>{project.desc}</p><div className="project-stack">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div><span className="project-destination">{project.href ? (en ? 'Read case study' : 'Leggi il caso studio') : (en ? 'View project details' : 'Vedi i dettagli del progetto')} <span aria-hidden="true">→</span></span></div>
       </Link>)}</div>
-      <p className="project-art-note mono">{en ? 'Illustrated project previews. Details and available links in the project cards.' : 'Anteprime grafiche illustrative. Dettagli e link disponibili nelle schede progetto.'}</p>
+      <p className="project-art-note mono">{en ? 'Previews are real screenshots or illustrations. Details and available links in the project cards.' : 'Le anteprime sono schermate reali o illustrazioni. Dettagli e link disponibili nelle schede progetto.'}</p>
     </section>
 
     <div className="toolkit-section wrap"><ToolkitMarquee lang={lang} /></div>

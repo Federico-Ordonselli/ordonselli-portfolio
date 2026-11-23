@@ -8,7 +8,7 @@ export const expertise = [
       it: [['Componenti e stato', 'React e TypeScript per organizzare interfacce, dati e interazioni. Runebog combina le pagine Next.js con un editor interattivo per mappe e incontri.'], ['Navigazione e contenuti', 'Next.js per pagine con URL dedicati e contenuti renderizzati sul server. In Vagabondando, i diari di viaggio bilingui arrivano da Sanity e le pagine statiche si rigenerano entro un minuto.'], ['Qualità delle interazioni', 'Layout responsive e verifiche automatiche. Matchday include test con Vitest e React Testing Library e flussi Cypress nel browser.']],
       en: [['Components and state', 'React and TypeScript to organise interfaces, data and interactions. Runebog combines Next.js pages with an interactive map and encounter editor.'], ['Navigation and content', 'Next.js for dedicated URLs and server-rendered content. Vagabondando serves bilingual travel stories from Sanity, with static pages regenerated within a minute.'], ['Interaction quality', 'Responsive layouts and automated checks. Matchday includes Vitest and React Testing Library tests, plus Cypress browser flows.']],
     },
-    projects: ['Runebog GM', 'Matchday', 'Vagabondando'],
+    projects: ['Runebog GM', 'Weirder', 'Matchday', 'Compagnia', 'Vagabondando'],
   },
   {
     slug: 'integrazioni', number: '02', tags: ['WordPress', 'Stripe', 'Sanity', 'Auth.js'],
@@ -19,7 +19,7 @@ export const expertise = [
       it: [['Pagamenti e prenotazioni', 'La prima versione di Vagabondando integrava Stripe Checkout con pagamento completo oppure acconto e saldo, e PostgreSQL per prenotazioni e posti, senza overbooking. È stata completata e provata in modalità test; la cliente ha poi scelto un sito senza pagamenti online.'], ['Contenuti modificabili', 'Lavoro con WordPress per siti e contenuti gestibili in autonomia, e con Sanity per progetti su misura. In Vagabondando, la cliente scrive i diari in italiano e inglese e cambia foto e profilo Instagram da Sanity Studio, senza nuovi deploy.'], ['Account e salvataggi', 'Runebog usa Auth.js per l’accesso e PostgreSQL per il salvataggio cloud delle campagne, con una vista condivisibile con i giocatori.']],
       en: [['Payments and bookings', 'The first version of Vagabondando integrated Stripe Checkout for full payments or deposits and balances, with PostgreSQL tracking bookings and capacity without overbooking. It was completed and tested in Stripe test mode; the client then chose a site without online payments.'], ['Editable content', 'I work with WordPress for independently managed websites and content, and with Sanity for custom projects. In Vagabondando, the client writes her journals in Italian and English and changes photos and her Instagram profile in Sanity Studio, with no new deploy.'], ['Accounts and saved work', 'Runebog uses Auth.js for sign-in and PostgreSQL for cloud campaign saves, with a view that can be shared with players.']],
     },
-    projects: ['Vagabondando', 'Runebog GM'],
+    projects: ['Vagabondando', 'Manpietro', 'Manabikai', 'Runebog GM'],
   },
   {
     slug: 'backend', number: '03', tags: ['Java', 'Spring Boot', 'NestJS', 'PostgreSQL'],

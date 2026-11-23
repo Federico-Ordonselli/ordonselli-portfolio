@@ -2,10 +2,11 @@ import Link from "next/link";
 import Tag from "./Tag.jsx";
 import ProjectArt from "./ProjectArt.jsx";
 
-function Card({ title, desc, tags, link, caseStudy, icon }) {
+function Card({ title, desc, tags, link, caseStudy, icon, art: artKind }) {
   const external = Boolean(link) && link !== "#";
   const interactive = Boolean(caseStudy) || external;
-  const art = { 'Runebog GM': 'runebog', Vagabondando: 'trekking', Matchday: 'matchday', Covershift: 'covershift', 'StudyBuddy v2': 'studybuddy' }[title];
+  // `art` dai dati ha la precedenza; la mappa per titolo resta per le anteprime illustrate storiche.
+  const art = artKind ?? { 'Runebog GM': 'runebog', Vagabondando: 'trekking', Matchday: 'matchday', Covershift: 'covershift', 'StudyBuddy v2': 'studybuddy' }[title];
   // Un approfondimento interno ha la precedenza sul link esterno: la pagina riporta comunque al codice.
   const Root = caseStudy ? Link : external ? "a" : "div";
   const linkProps = caseStudy ? { href: caseStudy } : external ? { href: link, target: "_blank", rel: "noopener noreferrer" } : {};
