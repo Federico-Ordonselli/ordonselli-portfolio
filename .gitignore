@@ -32,3 +32,6 @@ test-results/
 *.njsproj
 *.sln
 *.sw?
+
+# Foto del CV: resta solo in locale (è già dentro i PDF pubblici)
+scripts/cv/assets/photo.jpg
