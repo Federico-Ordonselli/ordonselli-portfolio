@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import Link from './LocalLink';
 import { useLanguage } from './SiteShell';
 import { expertise } from '../data/expertise';
 import { getContent } from '../data/content';

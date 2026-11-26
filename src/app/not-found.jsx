@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import Link from '../components/LocalLink';
 import { useLanguage } from '../components/SiteShell';
 export default function NotFound() {
   const { lang } = useLanguage();

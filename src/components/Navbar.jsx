@@ -1,6 +1,6 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
+import Link from './LocalLink';
 import { getContent } from '../data/content';
 export default function Navbar({ pathname, lang, setLang }) {
   const [open, setOpen] = useState(false);

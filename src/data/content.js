@@ -210,8 +210,8 @@ const RAW = {
       {
         title: "ordonselli.info",
         desc: tr(
-          "Questo sito: portfolio bilingue in Next.js 16 e React 19, migrato da una SPA Vite mantenendo i vecchi URL. Lingua salvata in un cookie e letta dal server per evitare il lampo di contenuto, Content Security Policy con nonce per richiesta, demo interattiva di interfacce in tre stili e test Playwright su desktop e mobile.",
-          "This site: a bilingual portfolio in Next.js 16 and React 19, migrated from a Vite SPA while keeping the old URLs. The language is stored in a cookie and read on the server to avoid a content flash, with a per-request nonce Content Security Policy, an interactive three-style interface demo and Playwright tests on desktop and mobile."
+          "Questo sito: portfolio bilingue in Next.js 16 e React 19, migrato da una SPA Vite mantenendo i vecchi URL. Italiano e inglese su URL distinti (/ e /en) con hreflang e dati strutturati, Content Security Policy con nonce per richiesta, demo interattiva di interfacce in tre stili e test Playwright su desktop e mobile.",
+          "This site: a bilingual portfolio in Next.js 16 and React 19, migrated from a Vite SPA while keeping the old URLs. Italian and English on separate URLs (/ and /en) with hreflang and structured data, with a per-request nonce Content Security Policy, an interactive three-style interface demo and Playwright tests on desktop and mobile."
         ),
         tags: ["Next.js", "React", "CSP", "Playwright", "Vercel"],
         color: "#6C63FF",

@@ -1,10 +1,11 @@
 'use client';
-import Link from 'next/link';
+import Link from '../components/LocalLink';
 import { useLanguage } from '../components/SiteShell';
 import InterfaceLab from '../components/InterfaceLab';
 import ProjectArt from '../components/ProjectArt';
 import { getContent } from '../data/content';
 import { expertise } from '../data/expertise';
+import { services } from '../data/services';
 import useReveal from '../components/useReveal';
 import ToolkitMarquee from '../components/ToolkitMarquee';
 
@@ -36,8 +37,9 @@ export default function HomePage() {
       <div className="hero-grid">
         <div className="hero-copy">
           <h1 id="hero-title">{en ? 'Your next' : 'Il tuo prossimo'}<br />{en ? 'project,' : 'progetto,'}<br /><em>{en ? 'done right.' : 'fatto bene.'}</em><span className="heading-star" aria-hidden="true">✳</span></h1>
-          <p className="hero-description">{en ? 'I’m Federico. I turn ideas into websites and web apps that look good, feel natural and do something useful.' : 'Sono Federico. Trasformo idee in siti e applicazioni web belli da vedere, semplici da usare e utili davvero.'}</p>
-          <div className="hero-actions"><a href="#selected-work" className="cta cta-dark">{en ? 'Explore my work' : 'Guarda i progetti'} <span aria-hidden="true">↘</span></a><a href={`mailto:${data.email}`} className="text-link">{en ? 'Tell me your idea' : 'Raccontami la tua idea'} <span aria-hidden="true">↗</span></a></div>
+          <p className="hero-description">{en ? 'I’m Federico, a freelance web developer in Rome. I build websites and custom web apps for professionals and small businesses: they look good, feel natural and do something useful.' : 'Sono Federico, sviluppatore web freelance a Roma. Realizzo siti web e web app su misura per professionisti e piccole imprese: belli da vedere, semplici da usare e utili davvero.'}</p>
+          <div className="hero-actions"><a href="#selected-work" className="cta cta-dark">{en ? 'Explore my work' : 'Guarda i progetti'} <span aria-hidden="true">↘</span></a><a href={`mailto:${data.email}?subject=${encodeURIComponent(en ? 'Quote request' : 'Richiesta preventivo')}`} className="text-link">{en ? 'Ask for a quote' : 'Richiedi un preventivo'} <span aria-hidden="true">↗</span></a></div>
+          <p className="hero-services mono"><span>{en ? 'Services:' : 'Servizi:'}</span>{services.map(item => <Link key={item.slug} href={`/${item.slug}`}>{item.navLabel[lang]} <span aria-hidden="true">→</span></Link>)}</p>
           <a className="hero-cv text-link" href={data.cv} target="_blank" rel="noreferrer">{data.ui.downloadCv} <span aria-hidden="true">↓</span></a>
           <div className="hero-footnote"><span className="small-cross" aria-hidden="true">＋</span>{en ? 'Design with character. Code with care.' : 'Design con carattere. Codice con criterio.'}</div>
         </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Link from 'next/link';
+import Link from '../components/LocalLink';
 import { getContent } from '../data/content.js';
 import SectionHeader from '../components/SectionHeader.jsx';
 import Tag from '../components/Tag.jsx';

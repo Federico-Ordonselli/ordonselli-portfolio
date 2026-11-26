@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { isEnglishPath, stripLocale } from './lib/i18n';
 
 export function proxy(request) {
   const nonce = btoa(crypto.randomUUID());
@@ -13,7 +14,17 @@ export function proxy(request) {
   const headers = new Headers(request.headers);
   headers.set('x-nonce', nonce);
   headers.set('Content-Security-Policy', policy);
-  const response = NextResponse.next({ request: { headers } });
+  // /en/* è la versione inglese delle stesse route: la riscriviamo e passiamo la lingua in un header.
+  const { pathname } = request.nextUrl;
+  const english = isEnglishPath(pathname);
+  headers.set('x-lang', english ? 'en' : 'it');
+  // La rewrite deve restare interna (stesso host del server). Se Next la vede come esterna rifà la richiesta
+  // a '/' e la lingua si perde: succede in locale con `next start -H 127.0.0.1`, che normalizza l'host in localhost.
+  const target = request.nextUrl.clone();
+  target.pathname = stripLocale(pathname);
+  const response = english
+    ? NextResponse.rewrite(target, { request: { headers } })
+    : NextResponse.next({ request: { headers } });
   response.headers.set('Content-Security-Policy', policy);
   return response;
 }

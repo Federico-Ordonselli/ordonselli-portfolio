@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import Link from './LocalLink';
 import { useLanguage } from './SiteShell';
 import ProjectArt from './ProjectArt';
 import { getCaseStudy } from '../data/caseStudies';

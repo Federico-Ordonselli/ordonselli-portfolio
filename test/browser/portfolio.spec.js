@@ -5,7 +5,7 @@ test('homepage renders, interactive demo works and layout stays within the viewp
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
-  const response = await page.goto('/');
+  const response = await page.goto('/en');
   expect(response.status()).toBe(200);
   expect(response.headers()['content-security-policy']).toContain("'nonce-");
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Your next');
@@ -49,12 +49,12 @@ test('homepage renders, interactive demo works and layout stays within the viewp
 
 test('existing project cards, certificates and downloads survive migration', async ({ page, request }) => {
   const data = getContent('en');
-  await page.goto('/projects');
+  await page.goto('/en/projects');
   await expect(page.locator('.card')).toHaveCount(Object.values(data.projects).flat().length);
   for (const project of Object.values(data.projects).flat()) await expect(page.getByRole('heading', { name: project.title, exact: true })).toBeVisible();
-  await page.goto('/hobbies');
+  await page.goto('/en/hobbies');
   await expect(page.locator('.card')).toHaveCount(data.hobbies.length);
-  await page.goto('/certifications');
+  await page.goto('/en/certifications');
   await expect(page.locator('.cert-card')).toHaveCount(data.certifications.flatMap(group => group.items).length);
   await page.locator('.cert-card').first().click();
   await expect(page.locator('iframe[title="CompTIA Security+ (ce)"]')).toBeVisible();
@@ -67,46 +67,68 @@ test('existing project cards, certificates and downloads survive migration', asy
   }
 });
 
-test('language persists between routes and after reload', async ({ page }, testInfo) => {
+test('language lives in the URL: Italian on /, English on /en', async ({ page }, testInfo) => {
   await page.goto('/');
-  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Your next');
-  if (testInfo.project.name === 'mobile') await page.getByRole('button', { name: 'Open menu' }).click();
-  await page.getByRole('button', { name: 'Italiano', exact: true }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Il tuo prossimo');
-  await page.getByRole('navigation').getByRole('link', { name: 'Chi sono', exact: true }).click();
-  await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('Chi sono');
-  await page.reload();
   await expect(page.locator('html')).toHaveAttribute('lang', 'it');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('Chi sono');
-  await page.goto('/');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Il tuo prossimo');
   if (testInfo.project.name === 'mobile') await page.getByRole('button', { name: 'Apri menu' }).click();
+  await page.getByRole('navigation').getByRole('link', { name: 'Chi sono', exact: true }).click();
+  await expect(page).toHaveURL(/\/about$/);
+  if (testInfo.project.name === 'mobile') await page.getByRole('button', { name: 'Apri menu' }).click();
   await page.getByRole('button', { name: 'English', exact: true }).click();
+  await expect(page).toHaveURL(/\/en\/about$/);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('About me');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
-  await expect(page.getByRole('heading', { level: 1 })).toContainText('Your next');
+  if (testInfo.project.name === 'mobile') await page.getByRole('button', { name: 'Open menu' }).click();
+  await page.getByRole('navigation').getByRole('link', { name: 'Projects', exact: true }).click();
+  await expect(page).toHaveURL(/\/en\/projects$/);
+  if (testInfo.project.name === 'mobile') await page.getByRole('button', { name: 'Open menu' }).click();
+  await page.getByRole('button', { name: 'Italiano', exact: true }).click();
+  await expect(page).toHaveURL(/\/projects$/);
+  await expect(page).not.toHaveURL(/\/en\//);
+  await expect(page.locator('html')).toHaveAttribute('lang', 'it');
+});
+
+test('SEO: canonical, hreflang, structured data, robots and service pages', async ({ page, request }) => {
+  await page.goto('/en/projects');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://www.ordonselli.info/en/projects');
+  await expect(page.locator('link[hreflang="it"]')).toHaveAttribute('href', 'https://www.ordonselli.info/projects');
+  await page.goto('/');
+  const jsonLd = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
+  expect(jsonLd['@graph'].map(node => node['@type'])).toEqual(expect.arrayContaining(['Person', 'Service']));
+  for (const path of ['/realizzazione-siti-web-roma', '/sviluppo-web-app', '/en/realizzazione-siti-web-roma']) {
+    const response = await page.goto(path);
+    expect(response.status()).toBe(200);
+    await expect(page.locator('a.cta[href^="mailto:"]').first()).toBeVisible();
+  }
+  const robots = await (await request.get('/robots.txt')).text();
+  expect(robots).toContain('OAI-SearchBot');
+  const sitemap = await (await request.get('/sitemap.xml')).text();
+  expect(sitemap).toContain('https://www.ordonselli.info/en/sviluppo-web-app');
+  expect(sitemap).not.toContain('https://ordonselli.info');
 });
 
 test('project anchors, technology routes, old hash URLs and missing pages work', async ({ page }) => {
-  await page.goto('/');
+  await page.goto('/en');
   await page.locator('.featured-project').first().click();
   await expect(page).toHaveURL(/\/projects\/runebog-gm$/);
-  await page.goto('/projects#covershift');
+  await page.goto('/en/projects#covershift');
   await expect(page.locator('#covershift')).toBeInViewport();
-  await page.goto('/');
+  await page.goto('/en');
   await page.locator('.expertise-row').first().click();
   await expect(page).toHaveURL(/\/competenze\/frontend$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Interfaces that feel right.');
   for (const slug of ['integrazioni', 'backend']) {
-    const response = await page.goto('/competenze/' + slug);
+    const response = await page.goto('/en/competenze/' + slug);
     expect(response.status()).toBe(200);
     await expect(page.locator('.detail-projects > div')).not.toHaveCount(0);
   }
-  await page.goto('/#/certifications');
+  await page.goto('/en#/certifications');
   await expect(page).toHaveURL(/\/certifications$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('Certifications');
-  const missing = await page.goto('/competenze/missing');
+  const missing = await page.goto('/en/competenze/missing');
   expect(missing.status()).toBe(404);
   await expect(page.getByRole('link', { name: /Back to the homepage/ })).toBeVisible();
 });
@@ -114,8 +136,8 @@ test('project anchors, technology routes, old hash URLs and missing pages work',
 test('Matchday case study is linked from the homepage and project card', async ({ page }, testInfo) => {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
-  await page.goto('/');
-  await page.locator('.featured-project[href="/projects/matchday"]').click();
+  await page.goto('/en');
+  await page.locator('.featured-project[href="/en/projects/matchday"]').click();
   await expect(page).toHaveURL(/\/projects\/matchday$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Matchday');
   await expect(page.getByRole('link', { name: /Source code on GitLab/ })).toHaveAttribute('href', 'https://gitlab.com/Federico-Ordonselli/matchday');
@@ -128,10 +150,10 @@ test('Matchday case study is linked from the homepage and project card', async (
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
   await page.screenshot({ path: testInfo.outputPath('matchday.png'), fullPage: true, animations: 'disabled' });
-  await page.goto('/projects');
+  await page.goto('/en/projects');
   await page.locator('#matchday').click();
   await expect(page).toHaveURL(/\/projects\/matchday$/);
-  const missing = await page.goto('/projects/missing');
+  const missing = await page.goto('/en/projects/missing');
   expect(missing.status()).toBe(404);
   expect(errors).toEqual([]);
 });
@@ -139,7 +161,7 @@ test('Matchday case study is linked from the homepage and project card', async (
 test('Covershift case study shows its screenshots and links to the code', async ({ page }) => {
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
-  await page.goto('/projects');
+  await page.goto('/en/projects');
   await page.locator('#covershift').click();
   await expect(page).toHaveURL(/\/projects\/covershift$/);
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Covershift');
@@ -156,7 +178,7 @@ test('Covershift case study shows its screenshots and links to the code', async 
 
 test('mobile menu supports dismissal and narrow screens do not overflow', async ({ page }, testInfo) => {
   test.skip(testInfo.project.name !== 'mobile');
-  await page.goto('/');
+  await page.goto('/en');
   const menu = page.getByRole('button', { name: 'Open menu' });
   await menu.click();
   await expect(page.getByRole('navigation')).toBeVisible();
@@ -172,7 +194,7 @@ test('mobile menu supports dismissal and narrow screens do not overflow', async 
 });
 
 test('toolkit scrolls, emphasises the centre and supports pause and reduced motion', async ({ page }, testInfo) => {
-  await page.goto('/');
+  await page.goto('/en');
   const viewport = page.locator('.toolkit-viewport');
   const track = page.locator('.toolkit-track');
   await viewport.scrollIntoViewIfNeeded();
@@ -256,7 +278,7 @@ test('toolkit scrolls, emphasises the centre and supports pause and reduced moti
 });
 
 test('certificate dialog contains keyboard focus and restores its trigger', async ({ page }) => {
-  await page.goto('/certifications');
+  await page.goto('/en/certifications');
   const trigger = page.locator('.cert-card').first();
   await trigger.focus();
   await page.keyboard.press('Enter');
@@ -270,14 +292,11 @@ test('certificate dialog contains keyboard focus and restores its trigger', asyn
   await expect(trigger).toBeFocused();
 });
 
-test('Italian metadata follows language selection and survives reload', async ({ page }, testInfo) => {
+test('Italian metadata is served on Italian URLs', async ({ page }) => {
   await page.goto('/');
-  if (testInfo.project.name === 'mobile') await page.getByRole('button', { name: 'Open menu' }).click();
-  await page.getByRole('button', { name: 'Italiano', exact: true }).click();
-  await expect(page).toHaveTitle('Federico Ordonselli — Sviluppatore web');
+  await expect(page).toHaveTitle('Realizzazione siti web e web app a Roma | Federico Ordonselli');
   await page.goto('/about');
   await expect(page).toHaveTitle('Chi sono · Federico Ordonselli');
-  await page.reload();
   await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /Conosci Federico/);
   await expect(page.locator('meta[property="og:locale"]')).toHaveAttribute('content', 'it_IT');
   await page.goto('/competenze/frontend');

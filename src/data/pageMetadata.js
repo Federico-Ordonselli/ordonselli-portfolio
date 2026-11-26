@@ -1,7 +1,9 @@
-import { cookies } from 'next/headers';
+import { headers } from 'next/headers';
+import { alternatesFor } from '../lib/i18n';
+import { getService } from './services';
 
 export async function getRequestLanguage() {
-  return (await cookies()).get('lang')?.value === 'it' ? 'it' : 'en';
+  return (await headers()).get('x-lang') === 'en' ? 'en' : 'it';
 }
 
 const pages = {
@@ -13,5 +15,11 @@ const pages = {
 export async function getPageMetadata(page) {
   const lang = await getRequestLanguage();
   const [title, description] = pages[page][lang];
-  return { title, description, alternates: { canonical: `/${page}` } };
+  return { title, description, alternates: alternatesFor(`/${page}`, lang) };
+}
+
+export async function getServiceMetadata(slug) {
+  const lang = await getRequestLanguage();
+  const item = getService(slug);
+  return { title: item.metaTitle[lang], description: item.description[lang], alternates: alternatesFor(`/${slug}`, lang) };
 }

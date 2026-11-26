@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "./LocalLink";
 import Tag from "./Tag.jsx";
 import ProjectArt from "./ProjectArt.jsx";
 

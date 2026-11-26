@@ -255,3 +255,6 @@ body { margin: 0; }
   .lab-hint { font-size: 12px; }
   .project-art-note { max-width: none; }
 }
+.hero-services { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 18px; font-size: 11px; letter-spacing: .5px; }
+.hero-services a { gap: 6px; color: inherit; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--border); min-height: 24px; display: inline-flex; align-items: center; }
+.hero-services a:hover { text-decoration-color: currentColor; }

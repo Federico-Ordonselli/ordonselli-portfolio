@@ -88,3 +88,9 @@
 .legal-page ul { padding-left: 1.2em; }
 .legal-page li + li { margin-top: 8px; }
 .legal-page a { color: var(--blue); }
+
+/* Pagine servizio (/realizzazione-siti-web-roma, /sviluppo-web-app) */
+.service-detail .hero-actions { margin-top: 28px; }
+.service-steps-title { margin-top: 80px; margin-bottom: 24px; }
+.service-detail .detail-contact .detail-intro { margin: 8px 0 0; font-size: 15px; }
+@media (max-width: 900px) { .service-steps-title { margin-top: 56px; } }
